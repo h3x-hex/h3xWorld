@@ -1,0 +1,66 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import StarsCanvas from './components/Stars'
+import { useMediaQuery } from 'react-responsive'
+import Login from './Routes/Login'
+import Home from './Routes/Home'
+import Protected from './Routes/Protected'
+import Register from './Routes/Register'
+import Profile from './Routes/Profile'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import { AuthContext } from './Context/AuthContext'
+import Store from './Routes/Store'
+import Spaces from './Routes/Spaces'
+
+
+
+function App() {
+
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element:<Protected><Home/></Protected>
+    },
+    {
+      path:"/login",
+      element:<Login/>
+    },
+    {
+      path:"/register",
+      element:<Register/>
+    },
+    {
+      path:":username",
+      element:<Profile/>
+    },
+    {
+      path:"/store/:username",
+      element:<Store/>
+    },
+    {
+      path:"/h3xclusive/:username",
+      element:<h3xClusive/>
+    },
+    {
+      path:"/spaces/:username",
+      element:<Spaces/>
+    },
+    {
+      path:"/settings/:username",
+      element:<Profile/>
+    },
+    
+  ])
+
+  return (
+    <>
+      <AuthContext>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthContext>
+    </>
+  )
+}
+
+export default App
