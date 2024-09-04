@@ -8,7 +8,7 @@ export default function Navbar (){
     return (
         <div className="navbar bg-transparent">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl"><p>h<span className="text-warning">3</span>xWorld</p></a>
+                <a className="btn btn-ghost text-xl font-light"><p>h<span className="text-warning">3</span>xWorld</p></a>
             </div>
             <div className="flex-none gap-2">
                 {   
@@ -37,14 +37,16 @@ export default function Navbar (){
                     <li className="">
                     <a className="justify-between">
                         Profile
-                        
                     </a>
                     </li>
-                    <li><a>h3xStore</a></li>
-                    <li><a>h3xClusive</a></li>
-                    <li><a>h3xSpace</a></li>
-                    <li><a>h3xCard</a></li>
-                    <li><a>h3xPro</a></li>
+                    <li><a>Edit Profile</a></li>
+                    <div className='divider divider-warning my-0'></div>
+                    <li><a><p>h<span className="text-warning">3</span>xStore</p></a></li>
+                    <li><a><p>h<span className="text-warning">3</span>xClusive</p></a></li>
+                    <li><a><p>h<span className="text-warning">3</span>xSpace</p></a></li>
+                    <li><a><p>h<span className="text-warning">3</span>xCard</p></a></li>
+                    <li><a><p>h<span className="text-warning">3</span>xPro</p></a></li>
+                    <div className='divider divider-warning my-0'></div>
                     <li><a>Settings</a></li>
                     <li><a>Logout</a></li>
                 </ul>

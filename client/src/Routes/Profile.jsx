@@ -168,31 +168,31 @@ export default function Profile () {
                         <div className='flex flex-col gap-3'>
                             <div className="avatar mx-auto">
                                 <div className="w-36 rounded-full ring ring-offset-2">
-                                    <img src="/logo.png" />
+                                    <img src={profileUser.photoURL} />
                                 </div>
                             </div>
                             <div className='flex mx-auto text-white'>
                                 <h1 className='text-white text-3xl font-semibold'>{profileUser.firstName} {profileUser.lastName}</h1>
                             </div>
                             <div className='flex mx-auto text-white'>
-                                <h1 className='text-white text-2xl font-semibold'>@{profileUser.username}</h1>
+                                <h1 className='text-white text-xl '>@{profileUser.username}</h1>
                             </div>
                             <div className='flex flex-row mx-auto gap-6'>
                                 <div className='flex flex-row text-white'>
-                                    <div className='pt-1'>
+                                    <div className=''>
                                         <span class="material-symbols-outlined">location_on</span>
                                     </div>
                                     
-                                    <p className='text-white text-lg font-semibold'>{profileUser.location}</p>
+                                    <p className='text-white text-lg font-light'>{profileUser.location}</p>
                                 
                                 </div>
 
                                 <div className='flex flex-row text-white gap-1'>
-                                    <div className='pt-1'>
+                                    <div className='pt-[2px]'>
                                         <span class="material-symbols-outlined">work</span>
                                     </div>
                                     
-                                    <p className='text-white text-lg font-semibold'>{profileUser.occupation}</p>
+                                    <p className='text-white text-lg font-light'>{profileUser.occupation}</p>
                                 
                                 </div>
                             </div>
@@ -265,10 +265,9 @@ export default function Profile () {
                                     <></>
                                 }
                                 <div className='pt-8'>
-                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-white w-11/12 mx-auto ">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}>Store</a>
-                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)}>h3xClusive</a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)}>Spaces</a>
+                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-white w-[84%] mx-auto ">
+                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" >Store</a>
+                                        
                                     </div>
                                 </div>
                                 <div className=''>
@@ -665,9 +664,7 @@ export default function Profile () {
                                 }
                                 <div className='pt-8'>
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent w-3/12 mx-auto">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}>Store</a>
-                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)}>h3xClusive</a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)}>Spaces</a>
+                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold">Store</a>
                                     </div>
                                 </div>
                                 <div className='pb-8'>

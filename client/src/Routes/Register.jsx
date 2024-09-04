@@ -20,6 +20,7 @@ export function Register () {
         email: '',
         location: '',
         occupation: '',
+        photoURL: '',
         bio: '',
         socialLinksPlatforms: [],
         socialLinksURL: [],
@@ -32,13 +33,13 @@ export function Register () {
     return(
         <>
             {
-                pages == 1?
+                pages == 2?
 
                 <RegisterBasicDetails setPages={setPages} user={user} setUser={setUser}/>
 
                 :
 
-                pages == 2 ?
+                pages == 1 ?
 
 
                 <RegisterLinks setPages={setPages} user={user} setUser={setUser}/>

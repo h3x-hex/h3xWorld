@@ -36,7 +36,7 @@ export default function RegisterLinks({setPages, user, setUser}) {
         setUser({...user, socialLinksURL: linkArr, socialLinksPlatforms: platformArr})
         console.log(user)
         
-        //navigate(`/$`)
+        navigate(`/${user.username}`)
     }
 
     function updateURL(e, index) {

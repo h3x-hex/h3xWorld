@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import StarsCanvas from '../../components/Stars'
 import { useMediaQuery } from 'react-responsive'
 import {useNavigate} from 'react-router-dom'
 import { useUserStore } from '../../stores/user-store'
 import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "firebase/storage";
 
 export function RegisterBasicDetails({setPages, user, setUser}) {
 
@@ -13,9 +13,48 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
 
-    const [imageUploaded, setImageUploaded ] = useState('false');
+
+    const [file, setFile] = useState(null);
+    const [imgURL, setImgURL] = useState('');
+    const [imageUploaded, setImageUploaded ] = useState(false);
+    const fileUploadRef = useRef()
 
     const [password, setPassword] = useState('');
+
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(e.target.files[0]);
+        setImgURL(URL.createObjectURL(e.target.files[0]));
+        setImageUploaded(true)
+    }
+
+    function uploadImage(){
+        document.getElementById("fileUpload").click()
+    }
+
+    const registerUser = () => {
+        //Check Fields
+        //Upload Image
+        if(canSignUp)
+        {
+            console.log("Register User")
+            uploadBytes(storageRef, file).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+                // Upload completed successfully, now we can get the download URL
+                getDownloadURL(snapshot.ref).then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    setUser({...user, photoURL: downloadURL})
+                });
+            })
+        }
+        else {
+            alert("Check details fields");
+        }
+        
+        //Sign Up
+        
+
+    }
 
     function addDetails(){
         console.log(user)
@@ -27,19 +66,29 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
             createUserWithEmailAndPassword(auth, user.email, password)
             .then((userCredential) => {
                 // Signed up 
-                setUser({...user, createdAt: new Date().getTime()})
-                updateProfile(auth.currentUser, {
-                    displayName: user.username
-                  }).then(() => {
-                    // Profile updated!
-                    const db = getDatabase();
-                    set(ref(db, `Users/${user.username}`), user);
-                    setPages(2);
-                  }).catch((error) => {
-                    // An error occurred
-                    // ...
-                    console.log(error)
-                  });
+                const storage = getStorage();
+                const storageBucketRef = storageRef(storage, 'some-child');
+                uploadBytes(storageBucketRef, file).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        setUser({...user, photoURL: downloadURL, createdAt: new Date().getTime()})
+                        updateProfile(auth.currentUser, {
+                            displayName: user.username
+                          }).then(() => {
+                            // Profile updated!
+                            const db = getDatabase();
+                            set(ref(db, `Users/${user.username}`), user);
+                            setPages(2);
+                          }).catch((error) => {
+                            // An error occurred
+                            // ...
+                            console.log(error)
+                          });
+                    });
+                })
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -58,22 +107,30 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
                 <>
                     <div className='h-full w-screen bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-800 to-stone-900 text-white'>
                         <div className='h-full relative z-0 '>
-                            <div className='flex flex-col pt-16 gap-16 pl-3 '>
+                            <div className='flex flex-col pt-16  pl-3 '>
                                 <div className='flex mx-auto'>
-                                    <h1 className='text-5xl'>Join h<span className='text-[#F0B90B]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
+                                    <h1 className='text-5xl font-light'>Join h<span className='text-[#F0B90B]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
                                 </div>
-                                <div className="avatar mx-auto ">
-                                    <div className="ring-[#F0B90B] btn bg-transparent text-white  w-48 h-48 rounded-full ring">
-                                        {
-                                        
-                                            imageUploaded ?
-
-                                            <p className='pl-1 pt-[5.5rem] hover:cursor-pointer'>Click to add image</p>
-                                            :
-                                            <img src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'></img>
-                                        }
+                                <div className="flex flex-col items-center pt-16">
+                                    <div className="avatar ">
+                                        <div className="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2" onClick={() => uploadImage()}>
+                                            <img src={imgURL ? imgURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} width={256} height={256}/>
+                                        </div>
+                                    </div>
+            
+                                    <div className="">
+                                    <input 
+                                        id='fileUpload'
+                                        type="file" 
+                                        accept="image/*" 
+                                        fileName={imgURL}
+                                        className="file-input file-input-bordered w-80 invisible" 
+                                        onChange={handleChange}
+                                        ref={fileUploadRef}
+                                    />
                                     </div>
                                 </div>
+                                
                                 <div className='flex flex-col gap-3 '>
                                     <div className='flex flex-row w-full pr-2 gap-1 mb-0'>
                                         <input type="text" placeholder="First Name" value={user.firstName} onChange={(e) => (setUser({...user, firstName: e.target.value}))} className="text-white w-3/6 input bg-transparent border-[#F0B90B] focus:border-warning focus:bg-transparent rounded-full" />

@@ -72,12 +72,12 @@ function Login() {
       <div className='h-screen relative z-0'>
       <div className='flex flex-col pt-36 gap-36 '>
         <div className='flex mx-auto'>
-          <h1 className='text-[96px]'>Welcome to h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
+          <h1 className='text-[96px] font-light'>Welcome to h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
         </div>
         <div className='flex flex-row mx-auto pr-3 gap-8'>
           <div className='flex flex-col gap-3'>
-            <h1  className='text-5xl mx-auto pb-16'>Join h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
-            <button className='btn btn-warning w-96' onClick={() => registerUser()}>Join h3x|World</button>
+            <h1  className='text-5xl mx-auto pb-16 font-extralight'>Join h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
+            <button className='btn btn-warning w-96 ' onClick={() => registerUser()}>Join h3x|World</button>
           </div>
           <div className='divider divider-warning divider-horizontal'></div>
           <div className='flex flex-col gap-3'>
