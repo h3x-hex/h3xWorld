@@ -22,11 +22,9 @@ export function Register () {
         occupation: '',
         photoURL: '',
         bio: '',
+        photoURL: '',
         socialLinksPlatforms: [],
         socialLinksURL: [],
-        storeName: '',
-        h3xClusiveName: '',
-        profileViews: 0,
         createdAt: 0,
     })
     

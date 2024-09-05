@@ -1,9 +1,12 @@
+import { getAuth } from 'firebase/auth';
 import { useMediaQuery } from 'react-responsive'
 import {useNavigate} from 'react-router-dom'
 
 export default function Navbar (){
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     return (
         <div className="navbar bg-transparent">
@@ -27,8 +30,8 @@ export default function Navbar (){
                 <div tabIndex={0} role="button" className="btn btn-outline border-warning hover:border-warning btn-circle avatar">
                     <div className="w-10 rounded-full">
                     <img
-                        alt="Tailwind CSS Navbar component"
-                        src="/logo.png" />
+                        alt="Profile Photo"
+                        src={user.photoURL} />
                     </div>
                 </div>
                 <ul

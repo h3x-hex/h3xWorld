@@ -66,28 +66,47 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
             createUserWithEmailAndPassword(auth, user.email, password)
             .then((userCredential) => {
                 // Signed up 
-                const storage = getStorage();
-                const storageBucketRef = storageRef(storage, 'some-child');
-                uploadBytes(storageBucketRef, file).then((snapshot) => {
-                    console.log('Uploaded a blob or file!');
-                    // Upload completed successfully, now we can get the download URL
-                    getDownloadURL(snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
-                        setUser({...user, photoURL: downloadURL, createdAt: new Date().getTime()})
-                        updateProfile(auth.currentUser, {
-                            displayName: user.username
-                          }).then(() => {
-                            // Profile updated!
-                            const db = getDatabase();
-                            set(ref(db, `Users/${user.username}`), user);
-                            setPages(2);
-                          }).catch((error) => {
-                            // An error occurred
-                            // ...
-                            console.log(error)
-                          });
-                    });
-                })
+                if(imageUploaded)
+                {
+                    const storage = getStorage();
+                    const storageBucketRef = storageRef(storage, 'some-child');
+                    uploadBytes(storageBucketRef, file).then((snapshot) => {
+                        console.log('Uploaded a blob or file!');
+                        // Upload completed successfully, now we can get the download URL
+                        getDownloadURL(snapshot.ref).then((downloadURL) => {
+                            console.log('File available at', downloadURL);
+                            setUser({...user, photoURL: downloadURL, createdAt: new Date().getTime()})
+                            updateProfile(auth.currentUser, {
+                                displayName: user.username,
+                                photoURL: downloadURL,
+                            }).then(() => {
+                                // Profile updated!
+                                const db = getDatabase();
+                                set(ref(db, `Users/${user.username}`), user);
+                                setPages(2);
+                            }).catch((error) => {
+                                // An error occurred
+                                // ...
+                                console.log(error)
+                            });
+                        });
+                    })
+                }
+
+                setUser({...user, createdAt: new Date().getTime()})
+                updateProfile(auth.currentUser, {
+                    displayName: user.username,
+                    photoURL: downloadURL,
+                }).then(() => {
+                    // Profile updated!
+                    const db = getDatabase();
+                    set(ref(db, `Users/${user.username}`), user);
+                    setPages(2);
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                    console.log(error)
+                });
                 
             })
             .catch((error) => {
@@ -165,22 +184,27 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
                             <div className='absolute left-96 top-16'>
                                 <button className='btn btn-ghost bg-transparent text-white hover:text-warning' onClick={() => navigate('/login')}><span className="material-symbols-outlined">arrow_back</span></button>
                             </div>
-                            <div className='flex flex-col pt-16 gap-16 pl-3 mx-auto'>
-                                <div className='flex mx-auto'>
+                            <div className='flex flex-col pt-16 gap-3  mx-auto'>
+                                <div className='flex mx-auto pb-8'>
                                     <h1 className='text-5xl'>Join h<span className='text-[#F0B90B]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
                                 </div>
-                                <div className="avatar mx-auto ">
-                                    <div className="ring-[#F0B90B] btn bg-transparent hover:bg-transparent hover:text-lg text-white  w-48 h-48 rounded-full ring">
-                                        {
-                                        
-                                            imageUploaded ?
-
-                                            <p className='pl-1 pt-20 hover:cursor-pointer'>Click to add image</p>
-                                            :
-                                            <img src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'></img>
-                                        }
+                                <div className="avatar mx-auto cursor-pointer">
+                                    <div className="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2" onClick={() => uploadImage()}>
+                                        <img src={imgURL ? imgURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} width={256} height={256}/>
                                     </div>
+                                    
                                 </div>
+                                <div className="">
+                                    <input 
+                                        id='fileUpload'
+                                        type="file" 
+                                        accept="image/*" 
+                                        fileName={imgURL}
+                                        className="file-input file-input-bordered w-80 invisible" 
+                                        onChange={handleChange}
+                                        ref={fileUploadRef}
+                                    />
+                                    </div>
                                 <div className='flex flex-col gap-3 w-2/6 mx-auto'>
                                     <div className='flex flex-row w-full pr-2 gap-1 mb-0'>
                                         <input type="text" placeholder="First Name" value={user.firstName} onChange={(e) => (setUser({...user, firstName: e.target.value}))} className="w-3/6 input bg-transparent border-[#F0B90B] text-white focus:border-warning focus:bg-transparent rounded-full" />
