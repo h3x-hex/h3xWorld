@@ -107,14 +107,16 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
                 <>
                     <div className='h-full w-screen bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-800 to-stone-900 text-white'>
                         <div className='h-full relative z-0 '>
-                            <div className='absolute left-0 top-28'>
-                                <button className='btn btn-ghost bg-transparent text-white hover:text-warning' onClick={() => setPages(1)}><span className="material-symbols-outlined">arrow_back</span></button>
+                            <div className='absolute left-0 top-36'>
+                                <button className='btn btn-ghost bg-transparent text-white hover:text-warning' onClick={() => navigate('/login')}><span className="material-symbols-outlined">arrow_back</span></button>
                             </div>
                             <div className='flex flex-col pt-16  pl-3 '>
+                                
                                 <div className='flex mx-auto'>
                                     <h1 className='text-5xl font-light'>Join h<span className='text-[#F0B90B]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
                                 </div>
-                                <div className="flex flex-col items-center pt-16">
+                                <div className="flex flex-col items-center pt-6">
+                                <h1 className='text-xl py-5'>Enter Profile Details</h1>
                                     <div className="avatar ">
                                         <div className="w-48 rounded-full ring ring-neutral ring-offset-base-100 ring-offset-2" onClick={() => uploadImage()}>
                                             <img src={imgURL ? imgURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} width={256} height={256}/>
@@ -160,8 +162,8 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
                 <>
                     <div className='h-full w-screen  bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white items-center justify-center'>
                         <div className='h-full relative z-0 mx-auto '>
-                            <div className='absolute left-0 top-28'>
-                                <button className='btn btn-ghost bg-transparent text-white hover:text-warning' onClick={() => setPages(1)}><span className="material-symbols-outlined">arrow_back</span></button>
+                            <div className='absolute left-96 top-16'>
+                                <button className='btn btn-ghost bg-transparent text-white hover:text-warning' onClick={() => navigate('/login')}><span className="material-symbols-outlined">arrow_back</span></button>
                             </div>
                             <div className='flex flex-col pt-16 gap-16 pl-3 mx-auto'>
                                 <div className='flex mx-auto'>

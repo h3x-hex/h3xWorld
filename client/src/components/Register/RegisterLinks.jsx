@@ -4,6 +4,7 @@ import StarsCanvas from '../../components/Stars'
 import { useMediaQuery } from 'react-responsive'
 import {useNavigate} from 'react-router-dom'
 import { useUserStore } from '../../stores/user-store'
+import { getDatabase, ref, child, push, update } from "firebase/database";
 
 
 export default function RegisterLinks({setPages, user, setUser}) {
@@ -34,6 +35,11 @@ export default function RegisterLinks({setPages, user, setUser}) {
         })
         setLinksURL(linkArr);
         setUser({...user, socialLinksURL: linkArr, socialLinksPlatforms: platformArr})
+        const db = getDatabase();
+        const updates = {};
+        updates[`Users/${user.username}/socialLinksURL`] = linkArr;
+        updates[`Users/${user.username}/socialLinksPlatforms`] = platformArr;
+        update(ref(db), updates);
         console.log(user)
         
         navigate(`/${user.username}`)
