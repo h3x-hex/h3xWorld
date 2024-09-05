@@ -33,13 +33,13 @@ export function Register () {
     return(
         <>
             {
-                pages == 2?
+                pages == 1?
 
                 <RegisterBasicDetails setPages={setPages} user={user} setUser={setUser}/>
 
                 :
 
-                pages == 1 ?
+                pages == 2 ?
 
 
                 <RegisterLinks setPages={setPages} user={user} setUser={setUser}/>

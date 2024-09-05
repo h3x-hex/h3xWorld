@@ -21,8 +21,8 @@ function Login() {
 
   function loginUser() {
     const db = getDatabase();
-    const starCountRef = ref(db, `Users/${username}`);
-    onValue(starCountRef, (snapshot) => {
+    const userRef = ref(db, `Users/${username}`);
+    onValue(userRef, (snapshot) => {
       const data = snapshot.val();
       const auth = getAuth();
       signInWithEmailAndPassword(auth, data.email, password)
