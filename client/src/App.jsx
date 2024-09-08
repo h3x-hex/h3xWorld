@@ -13,6 +13,7 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
 import Store from './Routes/Store'
 import Spaces from './Routes/Spaces'
+import Create from './Routes/Create'
 
 
 
@@ -34,6 +35,10 @@ function App() {
     {
       path:":username",
       element:<Profile/>
+    },
+    {
+      path:"/create",
+      element:<Create/>
     },
     {
       path:"/store/:username",

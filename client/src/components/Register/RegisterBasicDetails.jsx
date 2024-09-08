@@ -32,30 +32,7 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
         document.getElementById("fileUpload").click()
     }
 
-    const registerUser = () => {
-        //Check Fields
-        //Upload Image
-        if(canSignUp)
-        {
-            console.log("Register User")
-            uploadBytes(storageRef, file).then((snapshot) => {
-                console.log('Uploaded a blob or file!');
-                // Upload completed successfully, now we can get the download URL
-                getDownloadURL(snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
-                    setUser({...user, photoURL: downloadURL})
-                });
-            })
-        }
-        else {
-            alert("Check details fields");
-        }
-        
-        //Sign Up
-        
-
-    }
-
+   
     function addDetails(){
         console.log(user)
 
@@ -63,19 +40,21 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
 
             console.log(user)
             const auth = getAuth();
+            const createdAt = new Date().getTime()
             createUserWithEmailAndPassword(auth, user.email, password)
             .then((userCredential) => {
                 // Signed up 
                 if(imageUploaded)
                 {
                     const storage = getStorage();
-                    const storageBucketRef = storageRef(storage, 'some-child');
+                    const storageBucketRef = storageRef(storage, `Users/${user.username}`);
+                    
                     uploadBytes(storageBucketRef, file).then((snapshot) => {
                         console.log('Uploaded a blob or file!');
                         // Upload completed successfully, now we can get the download URL
                         getDownloadURL(snapshot.ref).then((downloadURL) => {
                             console.log('File available at', downloadURL);
-                            setUser({...user, photoURL: downloadURL, createdAt: new Date().getTime()})
+                            setUser({...user, photoURL: downloadURL, createdAt: createdAt})
                             updateProfile(auth.currentUser, {
                                 displayName: user.username,
                                 photoURL: downloadURL,
@@ -93,20 +72,22 @@ export function RegisterBasicDetails({setPages, user, setUser}) {
                     })
                 }
 
-                setUser({...user, createdAt: new Date().getTime()})
-                updateProfile(auth.currentUser, {
-                    displayName: user.username,
-                    photoURL: downloadURL,
-                }).then(() => {
-                    // Profile updated!
-                    const db = getDatabase();
-                    set(ref(db, `Users/${user.username}`), user);
-                    setPages(2);
-                }).catch((error) => {
-                    // An error occurred
-                    // ...
-                    console.log(error)
-                });
+                else
+                {
+                    setUser({...user, createdAt: createdAt})
+                    updateProfile(auth.currentUser, {
+                        displayName: user.username,
+                    }).then(() => {
+                        // Profile updated!
+                        const db = getDatabase();
+                        set(ref(db, `Users/${user.username}`), user);
+                        setPages(2);
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                        console.log(error)
+                    });
+                }
                 
             })
             .catch((error) => {

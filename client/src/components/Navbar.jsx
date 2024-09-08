@@ -1,12 +1,54 @@
 import { getAuth } from 'firebase/auth';
-import { useMediaQuery } from 'react-responsive'
-import {useNavigate} from 'react-router-dom'
+import { useMediaQuery } from 'react-responsive';
+import {useNavigate} from 'react-router-dom';
+import { useState, useEffect, useRef } from "react";
+import Create from '../Routes/Create';
+
 
 export default function Navbar (){
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
+
+    const [postImageUploaded, setPostUploaded] = useState(false);
+    const [postFiles, setPostFiles] = useState();
+    const [postDownloadURL, setPostDownloadURL] = useState();
+
+    async function uploadFiles () {
+
+        const URLs = [];
+        for(let i = 0; i < postFiles.length; i++)
+        {
+            console.log(i)
+            const imageRef = ref(storage, `/Posts/${user.displayName}/${postFiles[i].name}`);
+
+            await uploadBytes(imageRef, postFiles[i])
+                .then(() => {
+                    getDownloadURL(imageRef)
+                    .then((url) => {
+                        // Insert url into an <img> tag to "download"
+                        URLs.push(url);
+                    })
+                    .catch((error) => {
+                      // A full list of error codes is available at
+                      // https://firebase.google.com/docs/storage/web/handle-errors
+                      
+                    });
+                })
+            .catch((error) => {
+            console.log("error");
+            });
+        }
+        setPostDownloadURL(URLs);
+        console.log(URLs);
+    }
+
+    async function uploadPost() {
+        
+
+
+    }
 
     return (
         <div className="navbar bg-transparent">
@@ -18,11 +60,11 @@ export default function Navbar (){
                     isMobile ?
 
                     <div className="flex ">
-                        <button className="btn btn-warning btn-outline rounded-full w-12"><span class="material-symbols-outlined">add</span></button>
+                        <button className="btn btn-warning btn-outline rounded-full w-12" onClick={() => {if(document)document.getElementById('createPost').showModal()}}><span class="material-symbols-outlined">add</span></button>
                     </div>
                     :
                     <div className="flex ">
-                        <button className="btn btn-warning btn-outline rounded-full w-36">Create Post</button>
+                        <button className="btn btn-warning btn-outline rounded-full w-36" onClick={() => {if(document)document.getElementById('createPost').showModal()}}>Create Post</button>
                     </div>
                 }
                 <div className="dropdown dropdown-end ">
@@ -53,6 +95,28 @@ export default function Navbar (){
                 </ul>
                 </div>
             </div>
+            <dialog id="createPost" className="modal">
+                {
+                    isMobile?
+                        <div className="modal-box bg-stone-900 max-w-none w-96">
+                            <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            
+                            <Create/>
+                        </div>
+                        :
+                        <div className="modal-box bg-stone-900 max-w-none w-[48rem]">
+                            <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            
+                            <Create/>
+                        </div>
+                }
+            </dialog>
         </div>
     )
 }
