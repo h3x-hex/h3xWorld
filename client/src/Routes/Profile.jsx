@@ -114,30 +114,75 @@ export default function Profile () {
 
         console.log(tab);
     
-        if(tab == "1"){
+        if(tab == 1){
             if (document) {
     
                 (document.getElementById('profileTab1')).className = "tab bg-warning font-bold";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
                 setTab(tab);
             }
         }
-        if(tab == "2"){
+        if(tab == 2){
             if (document) {
     
                 (document.getElementById('profileTab2')).className = "tab bg-warning font-bold";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white " ;
                 (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
                 setTab(tab);
             }
         }
-        if(tab == "3"){
+        if(tab === 3){
             if (document) {
     
                 (document.getElementById('profileTab3')).className = "tab bg-warning font-bold";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
+                setTab(tab);
+            }
+        }
+        if(tab === 4){
+            if (document) {
+    
+                (document.getElementById('profileTab4')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
+                setTab(tab);
+            }
+        }
+        if(tab === 5){
+            if (document) {
+    
+                (document.getElementById('profileTab5')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
+                setTab(tab);
+            }
+        }
+        if(tab === 6){
+            if (document) {
+    
+                (document.getElementById('profileTab6')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
+                (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
                 setTab(tab);
             }
         }
@@ -151,9 +196,7 @@ export default function Profile () {
             setProfileUser(snapshot.val());
             console.log(snapshot.val())
             setLinks(snapshot.val().socialLinksPlatforms);
-            setLinksURL(snapshot.val().socialLinksURL)
-            
-
+            setLinksURL(snapshot.val().socialLinksURL);
         });
       }, []);
     
@@ -267,9 +310,13 @@ export default function Profile () {
                                     <></>
                                 }
                                 <div className='pt-8'>
-                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-white w-[84%] mx-auto ">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" >Portfolio</a>
-                                        
+                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-white mx-auto ">
+                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
+                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">post</span></a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">storefront</span></a>
+                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">box</span></a>
+                                        <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} ><span class="material-symbols-outlined">link</span></a>
+                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} ><span class="material-symbols-outlined">token</span></a>
                                     </div>
                                 </div>
                                 <div className=''>
@@ -308,47 +355,36 @@ export default function Profile () {
                                         tab === 3 ?
 
                                         <>
-                                            <div className=''>
-                                                <div className="flex flex-col items-center justify-center mx-auto ">
-                                                    <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                        <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
-                                                        <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
-                                                        <div className="mx-auto pt-8">
-                                                            <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Visit h3x.club</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+                                            <div>
+
                                             </div>
+                                           
                                         </>
                                         :
                                         <></>
 
                                         :
 
-                                        tab === 1 ?
+                                        tab === 4 ?
 
                                         <>
                                             <Portfolio/>
                                         </>
                                         :
 
-                                        tab === 2 ?
+                                        tab === 5 ?
 
                                         <>
-                                            {
-                                                profileUser.h3xClusiveName === '' ?
-
-                                                <div className="pb-32">
-                                                    
-                                                </div>
-                                                :
-                                                <>
-                                                </>
-                                            }
+                                            
+                                            <div className="h-32">
+                                                
+                                            </div>
+                                                
                                         </>
                                         :
 
-                                        tab === 3 ?
+                                        tab === 6 ?
 
                                         <>
                                             <div className=''>
@@ -376,7 +412,7 @@ export default function Profile () {
 
                 :
 
-                <div className='h-screen bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white pb-32'>
+                <div className='h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white pb-32'>
                     <Navbar/>
                     <div className='h-full  relative z-0 pb-64'>
                         <div className='flex flex-col  mx-auto gap-3'>
@@ -393,7 +429,7 @@ export default function Profile () {
                             </div>
                             <div className='flex flex-row mx-auto gap-6'>
                                 <div className='flex flex-row text-white'>
-                                    <div className='pt-1'>
+                                    <div className=''>
                                         <span class="material-symbols-outlined">location_on</span>
                                     </div>
                                     
@@ -402,7 +438,7 @@ export default function Profile () {
                                 </div>
 
                                 <div className='flex flex-row text-white gap-1'>
-                                    <div className='pt-1'>
+                                    <div className=''>
                                         <span class="material-symbols-outlined">work</span>
                                     </div>
                                     <p className='text-white text-lg font-semibold'>{profileUser.occupation}</p>
@@ -457,7 +493,7 @@ export default function Profile () {
 
                                     <div className={`grid gap-3 pt-8 pl-2 items-center justify-center grid-cols-3 mx-auto`}>
                                         {(links).map((item, index) => (
-                                            <a className="avatar pr-2 pt-1" href={linksURL[index]}>
+                                            <a key={index} className="avatar pr-2 pt-1" href={linksURL[index]}>
                                                 <div className="w-10 h-10  rounded ring ring-neutral ring-offset-base-100" onClick={(e) => {setLinksPlatform((linksPlatform) => {const result = [...linksPlatform];result[index] = elementInArray;return result;})}}>
                                                     <img
                                                         src={addSocialLogo(item)}
@@ -642,9 +678,14 @@ export default function Profile () {
                                     :
                                     <></>
                                 }
-                                <div className='pt-8'>
-                                    <div role="tablist" className="tabs tabs-boxed bg-transparent w-[24.5%] mx-auto">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold">Portfolio</a>
+                                <div className='pt-8 mx-auto'>
+                                    <div role="tablist" className="tabs tabs-boxed bg-transparent mx-auto">
+                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}>Portfolio</a>
+                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} >Blog</a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Shop</a>
+                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} >Links</a>
+                                        <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} >Collections</a>
+                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} >Spaces</a>
                                     </div>
                                 </div>
                                 <div className='pb-8'>
@@ -684,17 +725,7 @@ export default function Profile () {
                                             tab === 3 ?
     
                                             <>
-                                                <div className=''>
-                                                    <div className="flex flex-col items-center justify-center mx-auto ">
-                                                        <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                            <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
-                                                            <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
-                                                            <div className="mx-auto pt-8">
-                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Visit h3x.club</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </>
                                             :
                                             <></>
@@ -702,14 +733,14 @@ export default function Profile () {
 
                                             :
 
-                                            tab === 1 ?
+                                            tab === 4 ?
     
                                             <>
                                                 <Portfolio/>
                                             </>
                                             :
     
-                                            tab === 2 ?
+                                            tab === 5 ?
     
                                             <>
                                                 {
@@ -725,7 +756,7 @@ export default function Profile () {
                                             </>
                                             :
     
-                                            tab === 3 ?
+                                            tab === 6 ?
     
                                             <>
                                                 <div className=''>

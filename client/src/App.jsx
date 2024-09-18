@@ -9,11 +9,11 @@ import Home from './Routes/Home'
 import Protected from './Routes/Protected'
 import Register from './Routes/Register'
 import Profile from './Routes/Profile'
+import Admin from './Routes/Admin'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
 import Store from './Routes/Store'
 import Spaces from './Routes/Spaces'
-import Create from './Routes/Create'
 
 
 
@@ -37,8 +37,8 @@ function App() {
       element:<Profile/>
     },
     {
-      path:"/create",
-      element:<Create/>
+      path:"/admin",
+      element:<Protected><Admin/></Protected>
     },
     {
       path:"/store/:username",

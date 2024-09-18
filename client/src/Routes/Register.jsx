@@ -22,7 +22,6 @@ export function Register () {
         occupation: '',
         photoURL: '',
         bio: '',
-        photoURL: '',
         socialLinksPlatforms: [],
         socialLinksURL: [],
         createdAt: 0,
