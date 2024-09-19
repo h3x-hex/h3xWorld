@@ -23,8 +23,10 @@ function Login() {
     console.log(username)
     const db = getDatabase();
     const userRef = ref(db, `Users/${username}`);
+    console.log(userRef)
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
+      console.log(data)
       const auth = getAuth();
       signInWithEmailAndPassword(auth, data.email, password)
         .then((userCredential) => {
