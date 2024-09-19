@@ -20,6 +20,7 @@ function Login() {
   }
 
   function loginUser() {
+    console.log(username)
     const db = getDatabase();
     const userRef = ref(db, `Users/${username}`);
     onValue(userRef, (snapshot) => {
