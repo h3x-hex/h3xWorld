@@ -20,7 +20,7 @@ function Login() {
   }
 
   function loginUser() {
-    console.log(username)
+    console.log(username + "Username")
     const dbRef = ref(getDatabase());
     console.log(dbRef)
     get(child(dbRef, `Users/${username}`)).then((snapshot) => {
