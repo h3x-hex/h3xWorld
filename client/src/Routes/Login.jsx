@@ -3,7 +3,7 @@ import StarsCanvas from '../components/Stars'
 import { useMediaQuery } from 'react-responsive'
 import {useNavigate} from 'react-router-dom'
 import { useUserStore } from '../stores/user-store'
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, get, child } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -24,23 +24,31 @@ function Login() {
     const db = getDatabase();
     const userRef = ref(db, `Users/${username}`);
     console.log(userRef)
-    onValue(userRef, (snapshot) => {
-      const data = snapshot.val();
-      console.log(data)
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, data.email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          console.log(user)
-          navigate(`/${username}`)
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage)
-        });
-    });
+    get(child(userRef)).then((snapshot) => {
+      if (snapshot.exists()) 
+      {
+        const data = snapshot.val();
+        console.log(data)
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, data.email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user)
+            navigate(`/${username}`)
+          })      
+      } 
+      else 
+      {
+        console.log("No data available");
+      }
+      
+        
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage)
+    });;
   }
 
   return (
