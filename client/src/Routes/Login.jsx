@@ -21,10 +21,9 @@ function Login() {
 
   function loginUser() {
     console.log(username)
-    const db = getDatabase();
-    const userRef = ref(db, `Users/${username}`);
-    console.log(userRef)
-    get(child(userRef)).then((snapshot) => {
+    const dbRef = ref(getDatabase());
+    console.log(dbRef)
+    get(child(dbRef, `Users/${username}`)).then((snapshot) => {
       if (snapshot.exists()) 
       {
         const data = snapshot.val();
