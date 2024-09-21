@@ -141,7 +141,7 @@ export default function Navbar (){
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-stone-900 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white gap-3">
+                                className="menu menu-sm dropdown-content bg-stone-900 rounded-box z-[1] mt-12 w-52 p-2 shadow text-white gap-3">
                                 <li className="">
                                 <a className="justify-between">
                                     Profile

@@ -310,8 +310,8 @@ export default function Profile () {
                                     <></>
                                 }
                                 <div className='pt-8'>
-                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-white mx-auto ">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
+                                    <div role="tablist" className="tabs tabs-boxed bg-transparent text-black mx-auto ">
+                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold text-black" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">post</span></a>
                                         <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">storefront</span></a>
                                         <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">box</span></a>
@@ -326,7 +326,7 @@ export default function Profile () {
                                         tab === 1 ?
 
                                         <>
-                                            <Portfolio/>
+                                            <Portfolio profileUser={profileUser}/>
                                         </>
                                         :
 
@@ -369,7 +369,7 @@ export default function Profile () {
                                         tab === 4 ?
 
                                         <>
-                                            <Portfolio/>
+                                            <Portfolio />
                                         </>
                                         :
 
@@ -696,7 +696,7 @@ export default function Profile () {
                                             tab === 1 ?
     
                                             <>
-                                                <Portfolio/>
+                                                <Portfolio profileUser={profileUser}/>
                                             </>
                                             :
     

@@ -5,6 +5,8 @@ import {useNavigate} from 'react-router-dom'
 import Navbar from '../components/Navbar';
 import StarsCanvas from '../components/Stars';
 import ReactQuill from "react-quill";
+import { getDatabase, ref, set } from "firebase/database";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "firebase/storage";
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 
@@ -20,6 +22,9 @@ export default function CreatePostModal() {
 
     const [content, setContent] = useState("");
     const [blogContent, setBlogContent] = useState("");
+
+    const [fileObj, setFileObj] = useState([]);
+    const [fileArray, setFileArray] = useState([]);
 
     const modules = {
         toolbar: [
@@ -77,6 +82,120 @@ export default function CreatePostModal() {
         setCreateSteps(2)
     }
 
+    function setPostFiles(e){
+
+        if(e.target.files)
+        {
+            let fObj = [];
+            let fArr = [];
+
+            if(fileArray.length > 0)
+            {
+                for(let i = 0; i < fileArray.length; i ++)
+                {   
+                    fObj.push(fileObj[0][i]);
+                    fArr.push(fileArray[i]);
+                }
+
+                for(let i = 0; i < e.target.files.length; i++)
+                {
+                    fObj.push(e.target.files[i]);
+                    fArr.push(URL.createObjectURL(fObj[i]));
+                }
+        
+                
+            }
+            else 
+            {
+                
+        
+                for(let i = 0; i < e.target.files.length; i++)
+                {
+                    fObj.push(e.target.files[i]);
+                    fArr.push(URL.createObjectURL(fObj[i]));
+                }
+            }
+
+            
+
+            setFileObj(fObj);
+            setFileArray(fArr);
+            console.log(fileObj, fObj);
+            console.log(fileArray, fArr)
+        }
+
+    }
+
+    function removeUploadedImage(fileURL)
+    {
+        let fArr = fileArray;
+        let fObj = fileObj;
+        console.log(fArr);
+        fArr.splice(fArr.indexOf(fileURL), 1);
+        fObj.splice(fArr.indexOf(fileURL), 1);
+        setFileArray([...fArr]);
+        setFileObj([...fObj])
+        console.log(fArr);
+    }
+
+    async function uploadFiles(postType, postId)
+    {
+        
+        return uploadFiles
+    }
+
+    async function uploadPost(postType) 
+    {
+        if(fileArray.length > 0 && user)
+        {
+            let uploadedFiles = [];
+            const postTimestamp = new Date().getTime();
+            const postId = user.displayName + postTimestamp;
+            for(let i = 0; i < fileArray.length; i++)
+            {
+                const storage = getStorage();
+                const storageBucketRef = storageRef(storage, `Posts/${user.username}/${postType}/${postId}`);
+                
+                uploadBytes(storageBucketRef, fileObj[i]).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        uploadedFiles.push(downloadURL);
+
+                        if(i === fileArray.length - 1)
+                        {
+                            const db = getDatabase();
+                            set(ref(db, 'Posts/' + user.displayName + postType + `/${postId}`), {
+                                postId: postId,
+                                postContent: content,
+                                files: uploadedFiles,
+                                timestamp: postTimestamp,
+                                likes: [],
+                                likesCount: 0,
+                                comments: [],
+                                commentsCount: 0,
+                                postUsername: user.displayName,
+                                postUserPhotoURl: user.photoURL
+                            })
+                        }
+                        }).catch((error) => {
+                            // An error occurred
+                            // ...
+                            console.log(error)
+                        });
+                    });
+                console.log(i)
+            }
+
+            
+        }
+        else
+        {
+            
+        }
+    }
+
     return(
         <>
         {
@@ -123,28 +242,42 @@ export default function CreatePostModal() {
 
                                     <div className='flex flex-col'>
                                             
-                                        <div className='w-72 h-72 cursor-pointer border-2 border-warning mx-auto'>
-                                            <input 
-                                                type="file" 
-                                                multiple  
-                                                onChange={(e) => setPostFiles(e.target.files)}
-                                                className='invisible'
-                                            />
+                                            <div className='flex flex-col gap-8'>
+                                                <div className='flex w-full h-96 pb-1'>
+                                                    <textarea className='bg-transparent textarea text-lg resize-none w-full' placeholder='Write here...' value={content} onChange={(e) => setContent(e.target.value)}/>
+                                                </div>
+                                                <div className='grid border-[1px]  border-warning gap-3 overflow-x-scroll grow'>
+                                                {
+                                                    fileArray.map((url) => (
+                                                        <div className='flex object-fill pt-1 w-full h-full'>
+                                                            
+                                                            <img src={url} key={url} width={256} height={256} className='w-full h-full'/>
+                                                            <div>
+                                                                <button className='relative top-0 right-6' onClick={() => removeUploadedImage(url)}>✕</button>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                                </div>
+                                                <div className=''>
+                                                
+                                                <div className="tooltip" data-tip="Add Media">
+                                                    <span className="material-symbols-outlined cursor-pointer text-4xl" onClick={() => {if(document)document.getElementById('portfolioFileUpload').click()}}>photo_library</span>
+                                                </div>
+                                                    <input 
+                                                        id='portfolioFileUpload'
+                                                        type="file" 
+                                                        multiple  
+                                                        onChange={(e) => setPostFiles(e)}
+                                                        className='invisible'
+                                                    />
+                                                </div>
+                                                
+                                            </div>
+                                            <div className='flex w-72 pt-8 mx-auto'>
+                                                <button className='btn btn-warning w-72' onClick={() => uploadPost('Portfolio')}>Upload</button>
+                                            </div>
                                         </div>
-                                        <div className='flex w-72 mx-auto pt-3'>
-                                            <ReactQuill
-                                                theme="bubble"
-                                                value={content}
-                                                onChange={setContent}
-                                                modules={modules}
-                                                formats={formats}
-                                                className='w-full h-96 text-white ql-description'
-                                            /> 
-                                        </div>
-                                        <div className='flex w-72 pt-20 mx-auto items-end justify-end'>
-                                            <button className='btn btn-warning w-72' onClick={() => uploadFiles}>Upload</button>
-                                        </div>
-                                    </div>
                                      
                                 :
                                 postType == 'Blog' ?
@@ -175,7 +308,7 @@ export default function CreatePostModal() {
                                         /> 
                                     </div>
                                     <div className='flex w-72 pt-20 mx-auto items-end justify-end'>
-                                        <button className='btn btn-warning w-72' onClick={() => uploadFiles}>Upload</button>
+                                        <button className='btn btn-warning w-72' onClick={() => uploadPost('Blog')}>Upload</button>
                                     </div>
                                 </div>
                                 
@@ -251,28 +384,40 @@ export default function CreatePostModal() {
                                     
                                         <div className='flex flex-col'>
                                             
-                                            <div className='flex flex-row gap-8'>
-                                                <div className='w-96 h-96 cursor-pointer border-2 border-warning '>
+                                            <div className='flex flex-col gap-8'>
+                                                <div className='flex w-full h-96 pb-1'>
+                                                    <textarea className='bg-transparent textarea text-lg resize-none w-full' placeholder='Write here...'/>
+                                                </div>
+                                                <div className='grid border-[1px] border-warning gap-3 overflow-x-scroll grow'>
+                                                {
+                                                    fileArray.map((url) => (
+                                                        <div className='flex object-fill pt-1 w-full h-full'>
+                                                            
+                                                            <img src={url} key={url} width={256} height={256} className='w-full h-full'/>
+                                                            <div>
+                                                                <button className='relative top-0 right-6' onClick={() => removeUploadedImage()}>✕</button>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                                </div>
+                                                <div className=''>
+                                                
+                                                <div className="tooltip" data-tip="Add Media">
+                                                    <span className="material-symbols-outlined cursor-pointer text-4xl" onClick={() => {if(document)document.getElementById('portfolioFileUpload').click()}}>photo_library</span>
+                                                </div>
                                                     <input 
+                                                        id='portfolioFileUpload'
                                                         type="file" 
                                                         multiple  
-                                                        onChange={(e) => setPostFiles(e.target.files)}
+                                                        onChange={(e) => setPostFiles(e)}
                                                         className='invisible'
                                                     />
                                                 </div>
-                                                <div className='flex w-96 h-96 pb-1'>
-                                                    <ReactQuill
-                                                        theme="snow"
-                                                        value={content}
-                                                        onChange={setContent}
-                                                        modules={modules}
-                                                        formats={formats}
-                                                        className='w-full h-[20rem] text-white ql-description'
-                                                    /> 
-                                                </div>
+                                                
                                             </div>
                                             <div className='flex w-96 pt-8 mx-auto'>
-                                                <button className='btn btn-warning w-96' onClick={() => uploadFiles}>Upload</button>
+                                                <button className='btn btn-warning w-96' onClick={() => uploadPost('Portfolio')}>Upload</button>
                                             </div>
                                         </div>
                                     :
@@ -304,7 +449,7 @@ export default function CreatePostModal() {
                                                 /> 
                                             </div>
                                             <div className='flex w-96 pt-8 mx-auto'>
-                                                <button className='btn btn-warning w-96' onClick={() => uploadFiles}>Upload</button>
+                                                <button className='btn btn-warning w-96' onClick={() => uploadPost('Blog')}>Upload</button>
                                             </div>
                                         </div>
 
