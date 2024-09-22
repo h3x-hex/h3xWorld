@@ -45,11 +45,11 @@ function App() {
       element:<Store/>
     },
     {
-      path:"/h3xclusive/:username",
+      path:"/:username",
       element:<h3xClusive/>
     },
     {
-      path:"/spaces/:username",
+      path:"/:username/spaces",
       element:<Spaces/>
     },
     {

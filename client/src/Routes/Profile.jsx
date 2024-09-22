@@ -8,13 +8,15 @@ import Navbar from '../components/Navbar';
 import { getDatabase, ref, onValue, set, update } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import Portfolio from '../components/Profile/Portfolio';
+import Blog from '../components/Profile/Blog';
+import { useUserStore } from '../stores/user-store';
 
 
 export default function Profile () {
 
     let { username } = useParams();
     const auth = getAuth();
-    const user = auth.currentUser;
+    const authUser = auth.currentUser;
 
     const [profileUser, setProfileUser] = useState({
         firstName: '',
@@ -31,6 +33,11 @@ export default function Profile () {
         profileViews: '',
         createdAt: 0,
     })
+    const { currentUser, addCurrentUser } = useUserStore((state) => {
+        return {currentUser: state.user, addCurrentUser: state.addToUser};
+    });
+
+    
 
 
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
@@ -113,7 +120,7 @@ export default function Profile () {
     const switchTab = (tab) => {
 
         console.log(tab);
-    
+        console.log(currentUser)
         if(tab == 1){
             if (document) {
     
@@ -124,6 +131,7 @@ export default function Profile () {
                 (document.getElementById('profileTab5')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab6')).className = "tab cursor-pointer text-white ";
                 setTab(tab);
+                
             }
         }
         if(tab == 2){
@@ -198,6 +206,12 @@ export default function Profile () {
             setLinks(snapshot.val().socialLinksPlatforms);
             setLinksURL(snapshot.val().socialLinksURL);
         });
+
+        const currentUserRef = ref(db, `Users/${authUser.displayName}`);
+        onValue(currentUserRef, (snapshot) => {
+            addCurrentUser(snapshot.val());
+            console.log(currentUser);                    
+        });                                             
       }, []);
     
     
@@ -208,7 +222,14 @@ export default function Profile () {
                 isMobile ?
 
                 <div className='h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white '>
-                    <Navbar/>
+
+                    {
+                        currentUser ?
+                        
+                        <Navbar currentUser={currentUser}/>
+                        :
+                        <></>
+                    }
                     <div className='h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 relative z-0'>
                         <div className='flex flex-col gap-3'>
                             <div className="avatar mx-auto">
@@ -311,7 +332,7 @@ export default function Profile () {
                                 }
                                 <div className='pt-8'>
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent text-black mx-auto ">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold text-black" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
+                                        <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">post</span></a>
                                         <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">storefront</span></a>
                                         <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">box</span></a>
@@ -321,7 +342,7 @@ export default function Profile () {
                                 </div>
                                 <div className=''>
                                     {
-                                        profileUser.username === user.displayName ?
+                                        profileUser.username === authUser.displayName ?
 
                                         tab === 1 ?
 
@@ -333,6 +354,14 @@ export default function Profile () {
                                         tab === 2 ?
 
                                         <>
+                                            <Blog profileUser={profileUser}/>
+                                        </>
+                                        :
+
+                                        tab === 3 ?
+
+                                        <>
+
                                             {
                                                 profileUser.h3xClusiveName === '' ?
 
@@ -349,16 +378,6 @@ export default function Profile () {
                                                 <>
                                                 </>
                                             }
-                                        </>
-                                        :
-
-                                        tab === 3 ?
-
-                                        <>
-
-                                            <div>
-
-                                            </div>
                                            
                                         </>
                                         :
@@ -680,7 +699,7 @@ export default function Profile () {
                                 }
                                 <div className='pt-8 mx-auto'>
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent mx-auto">
-                                        <a id='profileTab1' role="tab" className="tab bg-warning font-bold" onClick={() => switchTab(1)}>Portfolio</a>
+                                        <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}>Portfolio</a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} >Blog</a>
                                         <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Shop</a>
                                         <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} >Links</a>
@@ -690,7 +709,7 @@ export default function Profile () {
                                 </div>
                                 <div className='pb-8'>
                                     {
-                                        profileUser.username === user.displayName ?
+                                        profileUser.username === authUser.displayName ?
 
                                         
                                             tab === 1 ?
@@ -701,6 +720,13 @@ export default function Profile () {
                                             :
     
                                             tab === 2 ?
+    
+                                            <>
+                                                <Blog profileUser={profileUser}/>
+                                            </>
+                                            :
+    
+                                            tab === 3 ?
     
                                             <>
                                                 {
@@ -721,13 +747,6 @@ export default function Profile () {
                                                 }
                                             </>
                                             :
-    
-                                            tab === 3 ?
-    
-                                            <>
-                                                
-                                            </>
-                                            :
                                             <></>
                                         
 
@@ -743,16 +762,7 @@ export default function Profile () {
                                             tab === 5 ?
     
                                             <>
-                                                {
-                                                    profileUser.h3xClusiveName === '' ?
-    
-                                                    <div className="pb-32">
-                                                        
-                                                    </div>
-                                                    :
-                                                    <>
-                                                    </>
-                                                }
+                                                
                                             </>
                                             :
     
@@ -765,7 +775,7 @@ export default function Profile () {
                                                             <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
                                                             <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
                                                             <div className="mx-auto pt-8">
-                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Visit h3x.club</button>
+                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/x3nDant369/spaces`)}>Visit h3x.club</button>
                                                             </div>
                                                         </div>
                                                     </div>

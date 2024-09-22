@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import CreatePostModal from './CreatePostModal';
 
 
-export default function Navbar (){
+export default function Navbar ({currentUser}){
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
     const auth = getAuth();
@@ -128,7 +128,7 @@ export default function Navbar (){
                         :
                         <>
                         <div className="">
-                                <button className="btn btn-warning btn-outline rounded-full w-36" onClick={() => {if(document)document.getElementById('createPost').showModal()}}>Create</button>
+                                <button className="btn btn-warning btn-outline rounded-full w-36" onClick={() => {if(document)document.getElementById('createPost').showModal();console.log(currentUser)}}>Create</button>
                             </div>
                         <div className="dropdown dropdown-end flex flex-row gap-3">
                             

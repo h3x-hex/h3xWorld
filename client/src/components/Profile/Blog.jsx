@@ -3,9 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from 'react-responsive'
 import {useNavigate} from 'react-router-dom'
 import { getDatabase, ref, onValue } from "firebase/database";
+import ReactQuill from 'react-quill';
 
 
-export default function Portfolio ({profileUser}) {
+export default function Blog ({profileUser}) {
 
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
@@ -15,11 +16,11 @@ export default function Portfolio ({profileUser}) {
 
     useEffect(() => {
         const db = getDatabase();
-        const postRef = ref(db, 'Posts/' + profileUser.username + 'Portfolio');
+        const postRef = ref(db, 'Posts/' + profileUser.username + 'Blog');
         onValue(postRef, (snapshot) => {
             const data = snapshot.val();
             setPosts(data);
-            
+            console.log(data)
         });
     }, []);
 
@@ -30,22 +31,20 @@ export default function Portfolio ({profileUser}) {
 
     return (
         <>
-            
-        
         {
+            posts ?
             isMobile ?
             <>
             <div className="mx-auto text-center">
-                <p className="text-2xl font-bold pt-8">Portfolio</p>
+                <p className="text-2xl font-bold pt-8">Blog</p>
                 <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
 
             </div>
-            <div className="flex flex-col mx-auto px-3 gap-3 pb-8">
+            <div className="flex flex-col mx-auto px-1 gap-3 pb-8">
                 
                 {
                     Object.keys(posts).map((post) => {
                         return (
-                            <>
                         <div key={post} className="card bg-transparent w-full shadow-xl">  
                             <div className="card-body mx-auto">
                                 <div className='flex flex-col gap-1'>
@@ -63,24 +62,12 @@ export default function Portfolio ({profileUser}) {
                                             <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
                                         </div>
                                     </div>
-                                    <div className='pt-12 mx-auto flex flex-col'>
-                                        <h2 className="text-xl mx-auto">{posts[post].postContent}</h2>
+                                    <div className='flex flex-row gap-8 pt-6'>
+                                        <p className='text-xl font-bold pt-12'>{posts[post].postTitle}</p>
+                                        <img className='pt-6 pl-6' src={posts[post].files}></img>
                                     </div>
-                                    <div className="carousel w-64 mx-auto pt-12">
-                                        {   
-                                            posts[post].files.map((postImg) => {
-                                                {console.log(postImg)}
-                                                return(<div className="carousel-item w-full h-full">
-                                                    <img
-                                                        src={postImg}
-                                                        className="w-full"
-                                                        alt={posts[post].postContent}
-                                                    />
-                                                </div>
-                                            )})
-                                            
-                                        }                                    
-                                    </div>
+                                    <p>{posts[post].postContent}</p>
+                                    
 
                                 </div>
                                 
@@ -90,9 +77,8 @@ export default function Portfolio ({profileUser}) {
                                 <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
                                 <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
                             </div>
+                            <div className='divider divider-warning'></div>
                         </div>
-                        
-                        </>
                     )})
                 }
                 
@@ -103,7 +89,7 @@ export default function Portfolio ({profileUser}) {
             :
             <>
             <div className="mx-auto text-center">
-                <p className="text-2xl font-bold pt-8">Portfolio</p>
+                <p className="text-2xl font-bold pt-8">Blog</p>
                 <div className='divider divider-warning my-0 w-4/12 mx-auto'></div>
 
             </div>
@@ -112,7 +98,6 @@ export default function Portfolio ({profileUser}) {
             {
                     Object.keys(posts).map((post) => {
                         return (
-                            <>
                         <div key={post} className="card bg-transparent w-full shadow-xl">  
                             <div className="card-body mx-auto">
                                 <div className='flex flex-col gap-1'>
@@ -130,62 +115,62 @@ export default function Portfolio ({profileUser}) {
                                             <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
                                         </div>
                                     </div>
-                                    <div className='pt-12'>
-                                        <h2 className="text-xl">{posts[post].postContent}</h2>
+                                    <div className='flex flex-row gap-8 pt-6'>
+                                        <p className='text-xl font-bold pt-12'>{posts[post].postTitle}</p>
+                                        <img className='pt-6 pl-6' src={posts[post].files}></img>
                                     </div>
-                                    <div className="carousel w-64 mx-auto pt-12 cursor-pointer" onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}>
-                                        {   
-                                            posts[post].files.map((postImg) => {
-                                                {console.log(postImg)}
-                                                return(<div className="carousel-item w-full h-full cursor-pointer" onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}>
-                                                    <img
-                                                        src={postImg}
-                                                        className="w-full"
-                                                        alt={posts[post].postContent}
-                                                        onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}
-                                                    />
-                                                </div>
-                                            )})
-                                            
-                                        }                                    
+                                    <div>
+                                        <ReactQuill 
+                                            value={posts[post].postContent.substring(1,69)}
+                                            readOnly={true}
+                                            theme={'bubble'}
+                                        />
                                     </div>
+                                    
 
                                 </div>
                                 
                             </div>
-                            <div className='flex flex-row gap-3 pl-3'>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].likesCount}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/like.png'} width={24} height={24}/></button>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].commentsCount}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/comment.png'} width={24} height={24}/></button>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].postAwards}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/postAward.png'} width={24} height={24}/></button>
-                                </div>
+                            <div className='flex flex-row gap-3'>
+                                <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
+                                <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
+                                <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
                             </div>
-                            
                         </div>
-                        
-                        </>
                     )})
                 }
-        </div>
-        <dialog id="viewPortfolioPhotoModal" className="modal">
-            <div className="modal-box">
-                <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="py-4">Press ESC key or click on ✕ button to close</p>
             </div>
-        </dialog>
-        </>
+            </>
+            :
+            
+                isMobile? 
+
+                <>
+                <div className="mx-auto text-center">
+                    <p className="text-2xl font-bold pt-8">Blog</p>
+                    <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
+
+                </div>
+                    <p className='mx-auto text-center pb-64'>No posts yet...</p>
+                </>
+
+                :
+
+                <>
+                <div className="mx-auto text-center">
+                    <p className="text-2xl font-bold pt-8">Blog</p>
+                    <div className='divider divider-warning my-0 w-4/12 mx-auto'></div>
+
+                </div>
+                    <p className='mx-auto text-center pt-12'>No posts yet...</p>
+                </>
+
+            
+        
+
         }
+        
+        
     </>
     )
 }
