@@ -21,7 +21,7 @@ export const SocketManager = () => {
       console.log("disconnected");
     }
 
-    function onHello(value) {
+    function onInit(value) {
       setMap(value.map);
       setUser(value.id);
       setItems(value.items);
@@ -39,13 +39,13 @@ export const SocketManager = () => {
 
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
-    socket.on("hello", onHello);
+    socket.on("init", onInit);
     socket.on("characters", onCharacters);
     socket.on("mapUpdate", onMapUpdate);
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
-      socket.off("hello", onHello);
+      socket.off("init", onInit);
       socket.off("characters", onCharacters);
       socket.off("mapUpdate", onMapUpdate);
     };

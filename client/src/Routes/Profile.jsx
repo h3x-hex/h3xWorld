@@ -10,6 +10,8 @@ import { getAuth } from "firebase/auth";
 import Portfolio from '../components/Profile/Portfolio';
 import Blog from '../components/Profile/Blog';
 import { useUserStore } from '../stores/user-store';
+import Shop from '../components/Profile/Shop';
+import Links from '../components/Profile/Links';
 
 
 export default function Profile () {
@@ -198,6 +200,7 @@ export default function Profile () {
     }
 
     useEffect(() => {
+        switchTab(tab)
         const db = getDatabase();
         const userRef = ref(db, `Users/${username}`);
         onValue(userRef, (snapshot) => {
@@ -362,28 +365,13 @@ export default function Profile () {
 
                                         <>
 
-                                            {
-                                                profileUser.h3xClusiveName === '' ?
 
-                                                <div className="flex flex-col items-center justify-center mx-auto ">
-                                                    <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                        <h3 className="font-bold text-xl">Create your h<span className="text-warning">3</span>xClusive page</h3>
-                                                        <p className="py-4 text-lg">Launch your digital business right here on h<span className="text-warning">3</span>xWorld and start earning.</p>
-                                                        <div className="mx-auto pt-8">
-                                                            <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Create</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                :
-                                                <>
-                                                </>
-                                            }
+                                            <Shop/>
+
                                            
                                         </>
                                         :
-                                        <></>
-
-                                        :
+                                      
 
                                         tab === 4 ?
 
@@ -418,6 +406,11 @@ export default function Profile () {
                                                 </div>
                                             </div>
                                         </>
+                                        :
+                                        <>
+                                        
+                                        </>
+                                    
                                         :
                                         <>
                                         
@@ -729,33 +722,15 @@ export default function Profile () {
                                             tab === 3 ?
     
                                             <>
-                                                {
-                                                    profileUser.h3xClusiveName === '' ?
-    
-                                                    <div className="flex flex-col items-center justify-center mx-auto ">
-                                                        <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                            <h3 className="font-bold text-xl">Create your h<span className="text-warning">3</span>xClusive page</h3>
-                                                            <p className="py-4 text-lg">Launch your digital business right here on h<span className="text-warning">3</span>xWorld and start earning.</p>
-                                                            <div className="mx-auto pt-3">
-                                                                <button className="btn btn-outline hover:bg-warning btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Create</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    :
-                                                    <>
-                                                    </>
-                                                }
+                                                <Shop profileUser={profileUser}/>
                                             </>
                                             :
-                                            <></>
-                                        
-
-                                            :
+                                            
 
                                             tab === 4 ?
     
-                                            <>
-                                                <Portfolio/>
+                                            <>  
+                                                <Links profileUser={profileUser}/>
                                             </>
                                             :
     
@@ -772,10 +747,10 @@ export default function Profile () {
                                                 <div className=''>
                                                     <div className="flex flex-col items-center justify-center mx-auto ">
                                                         <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                            <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
-                                                            <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
+                                                            <h3 className="font-bold text-xl">Visit {profileUser.username}'s spaces</h3>
+                                                            <p className="py-4 text-lg"></p>
                                                             <div className="mx-auto pt-8">
-                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/x3nDant369/spaces`)}>Visit h3x.club</button>
+                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/x3nDant369/spaces`)}>Visit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -785,6 +760,9 @@ export default function Profile () {
                                             <>
                                             
                                             </>
+                                        :
+                                        <>
+                                        </>
                                     }
                                 </div>
                             </div>

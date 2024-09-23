@@ -90,7 +90,7 @@ export default function Blog ({profileUser}) {
             <>
             <div className="mx-auto text-center">
                 <p className="text-2xl font-bold pt-8">Blog</p>
-                <div className='divider divider-warning my-0 w-4/12 mx-auto'></div>
+                <div className='divider divider-warning my-0 w-2/12 mx-auto'></div>
 
             </div>
             <div className="flex flex-col w-4/12 mx-auto gap-3">
@@ -159,7 +159,7 @@ export default function Blog ({profileUser}) {
                 <>
                 <div className="mx-auto text-center">
                     <p className="text-2xl font-bold pt-8">Blog</p>
-                    <div className='divider divider-warning my-0 w-4/12 mx-auto'></div>
+                    <div className='divider divider-warning my-0 w-2/12 mx-auto'></div>
 
                 </div>
                     <p className='mx-auto text-center pt-12'>No posts yet...</p>

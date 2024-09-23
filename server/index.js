@@ -483,7 +483,7 @@ io.on("connection", (socket) => {
     avatarUrl: "https://models.readyplayer.me/64f0265b1db75f90dcfd9e2c.glb",
   });
 
-  socket.emit("hello", {
+  socket.emit("init", {
     map,
     characters,
     id: socket.id,

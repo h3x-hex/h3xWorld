@@ -12,6 +12,7 @@ export default function Portfolio ({profileUser}) {
     const auth = getAuth();
     const user = auth.currentUser;
     const [posts, setPosts] = useState([])
+    const [postMedia, setPostMedia] = useState(null);
 
     useEffect(() => {
         const db = getDatabase();
@@ -24,7 +25,11 @@ export default function Portfolio ({profileUser}) {
     }, []);
 
 
-
+    function showPostMedia(postImg)
+    {
+        if(document){document.getElementById('viewPortfolioPhotoModal').showModal()}
+        setPostMedia(postImg);
+    }
 
 
 
@@ -35,76 +40,72 @@ export default function Portfolio ({profileUser}) {
         {
             isMobile ?
             <>
-            <div className="mx-auto text-center">
-                <p className="text-2xl font-bold pt-8">Portfolio</p>
-                <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
+                <div className="mx-auto text-center">
+                    <p className="text-2xl font-bold pt-8">Portfolio</p>
+                    <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
+                </div>
+                <div className="flex flex-col mx-auto px-3 gap-3 pb-8">
+                    {
+                        Object.keys(posts).map((post) => {
+                            console.log(post)
+                            return (
+                                <>
+                            <div key={post} className="card bg-transparent w-full shadow-xl">  
+                                <div className="card-body mx-auto">
+                                    <div className='flex flex-col gap-1'>
 
-            </div>
-            <div className="flex flex-col mx-auto px-3 gap-3 pb-8">
-                
-                {
-                    Object.keys(posts).map((post) => {
-                        return (
-                            <>
-                        <div key={post} className="card bg-transparent w-full shadow-xl">  
-                            <div className="card-body mx-auto">
-                                <div className='flex flex-col gap-1'>
-
-                                    <div className='flex flex-row gap-2 absolute left-3'>
-                                        <div tabIndex={0} role="button" className="btn btn-outline border-warning hover:border-warning btn-circle avatar">
-                                            <div className="w-10 rounded-full">
-                                            <img
-                                                alt="Profile Photo"
-                                                src={posts[post].postUserPhotoURl} />
+                                        <div className='flex flex-row gap-2 absolute left-3'>
+                                            <div tabIndex={0} role="button" className="btn btn-outline border-warning hover:border-warning btn-circle avatar">
+                                                <div className="w-10 rounded-full">
+                                                <img
+                                                    alt="Profile Photo"
+                                                    src={posts[post].postUserPhotoURL} />
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-row gap-3'>
+                                                <p className='text-lg font-bold'>{posts[post].postUserFullName}</p>
+                                                <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
                                             </div>
                                         </div>
-                                        <div className='flex flex-row gap-3'>
-                                            <p className='text-lg font-bold'>{posts[post].postUserFullName}</p>
-                                            <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
+                                        <div className='pt-12 mx-auto flex flex-col '>
+                                            <h2 className="text-xl mx-auto">{posts[post].postContent}</h2>
                                         </div>
-                                    </div>
-                                    <div className='pt-12 mx-auto flex flex-col'>
-                                        <h2 className="text-xl mx-auto">{posts[post].postContent}</h2>
-                                    </div>
-                                    <div className="carousel w-64 mx-auto pt-12">
-                                        {   
-                                            posts[post].files.map((postImg) => {
-                                                {console.log(postImg)}
-                                                return(<div className="carousel-item w-full h-full">
-                                                    <img
-                                                        src={postImg}
-                                                        className="w-full"
-                                                        alt={posts[post].postContent}
-                                                    />
-                                                </div>
-                                            )})
-                                            
-                                        }                                    
-                                    </div>
+                                        <div className="carousel w-64 mx-auto pt-12">
+                                            {   
+                                                posts[post].files.map((postImg) => {
+                                                    {console.log(postImg)}
+                                                    return(<div className="carousel-item w-full h-full">
+                                                        <img
+                                                            src={postImg}
+                                                            className="w-full"
+                                                            alt={posts[post].postContent}
+                                                        />
+                                                    </div>
+                                                )})
+                                            }                                    
+                                        </div>
 
+                                    </div>
+                                    
                                 </div>
-                                
+                                <div className='flex flex-row gap-3'>
+                                    <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
+                                    <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
+                                    <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
+                                </div>
                             </div>
-                            <div className='flex flex-row gap-3'>
-                                <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
-                                <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
-                                <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
-                            </div>
-                        </div>
-                        
-                        </>
-                    )})
-                }
-                
-                
-            </div>
+                            
+                            </>
+                        )})
+                    }
+                </div>
             </>
 
             :
             <>
             <div className="mx-auto text-center">
                 <p className="text-2xl font-bold pt-8">Portfolio</p>
-                <div className='divider divider-warning my-0 w-4/12 mx-auto'></div>
+                <div className='divider divider-warning my-0 w-2/12 mx-auto'></div>
 
             </div>
             <div className="flex flex-col w-4/12 mx-auto gap-3">
@@ -113,77 +114,85 @@ export default function Portfolio ({profileUser}) {
                     Object.keys(posts).map((post) => {
                         return (
                             <>
-                        <div key={post} className="card bg-transparent w-full shadow-xl">  
-                            <div className="card-body mx-auto">
-                                <div className='flex flex-col gap-1'>
+                            <div key={post} className="card bg-transparent w-full shadow-xl">  
+                                <div className="card-body">
+                                    <div className='flex flex-col gap-1'>
 
-                                    <div className='flex flex-row gap-2 absolute left-3'>
-                                        <div tabIndex={0} role="button" className="btn btn-outline border-warning hover:border-warning btn-circle avatar">
-                                            <div className="w-10 rounded-full">
-                                            <img
-                                                alt="Profile Photo"
-                                                src={posts[post].postUserPhotoURL} />
+                                        <div className='flex flex-row gap-2 absolute left-3'>
+                                            <div tabIndex={0} role="button" className="btn btn-outline border-warning hover:border-warning btn-circle avatar">
+                                                <div className="w-10 rounded-full">
+                                                <img
+                                                    alt="Profile Photo"
+                                                    src={posts[post].postUserPhotoURL} />
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-row gap-3'>
+                                                <p className='text-lg font-bold'>{posts[post].postUserFullName}</p>
+                                                <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
                                             </div>
                                         </div>
-                                        <div className='flex flex-row gap-3'>
-                                            <p className='text-lg font-bold'>{posts[post].postUserFullName}</p>
-                                            <p className='text-md pt-[2px]'>@{posts[post].postUsername}</p>
+                                        <div className='pt-16'>
+                                            <h2 className="text-xl ">{posts[post].postContent}</h2>
                                         </div>
-                                    </div>
-                                    <div className='pt-12'>
-                                        <h2 className="text-xl">{posts[post].postContent}</h2>
-                                    </div>
-                                    <div className="carousel w-64 mx-auto pt-12 cursor-pointer" onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}>
-                                        {   
-                                            posts[post].files.map((postImg) => {
-                                                {console.log(postImg)}
-                                                return(<div className="carousel-item w-full h-full cursor-pointer" onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}>
-                                                    <img
-                                                        src={postImg}
-                                                        className="w-full"
-                                                        alt={posts[post].postContent}
-                                                        onClick={{if(document){document.getElementById('viewPortfolioPhotoModal').open()}}}
-                                                    />
-                                                </div>
-                                            )})
-                                            
-                                        }                                    
-                                    </div>
+                                        <div className="carousel w-64 mx-auto pt-12">
+                                            {   
+                                                posts[post].files.map((postImg) => {
+                                                    {console.log(postImg)}
+                                                    return(<div className="carousel-item w-full h-full cursor-pointer">
+                                                        <img
+                                                            src={postImg}
+                                                            className="w-full"
+                                                            alt={posts[post].postContent}
+                                                            onClick={() => showPostMedia(postImg)}
+                                                        />
+                                                    </div>
+                                                )})
+                                                
+                                            }                                    
+                                        </div>
 
+                                    </div>
+                                    
+                                </div>
+                                <div className='flex flex-row gap-3 pl-3'>
+                                    <div className='flex flex-row'>
+                                        <button className='btn btn-ghost w-1'>{posts[post].likesCount}</button>
+                                        <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/like.png'} width={24} height={24}/></button>
+                                    </div>
+                                    <div className='flex flex-row'>
+                                        <button className='btn btn-ghost w-1'>{posts[post].commentsCount}</button>
+                                        <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/comment.png'} width={24} height={24}/></button>
+                                    </div>
+                                    <div className='flex flex-row'>
+                                        <button className='btn btn-ghost w-1'>{posts[post].postAwards}</button>
+                                        <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/postAward.png'} width={24} height={24}/></button>
+                                    </div>
                                 </div>
                                 
                             </div>
-                            <div className='flex flex-row gap-3 pl-3'>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].likesCount}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/like.png'} width={24} height={24}/></button>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].commentsCount}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/comment.png'} width={24} height={24}/></button>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <button className='btn btn-ghost w-1'>{posts[post].postAwards}</button>
-                                    <button className='btn btn-ghost' onClick={() => updateLike()}><img src={'/postAward.png'} width={24} height={24}/></button>
-                                </div>
-                            </div>
-                            
-                        </div>
                         
                         </>
                     )})
                 }
         </div>
         <dialog id="viewPortfolioPhotoModal" className="modal">
-            <div className="modal-box">
+            <div className="modal-box bg-stone-900">
                 <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </form>
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                <>
+                    <div className="carousel-item w-full h-full cursor-pointer">
+                        <img
+                            src={postMedia}
+                            className="w-full"
+                            onClick={() => {if(document){document.getElementById('viewPortfolioPhotoModal').showModal()}}}
+                        />
+                    </div>
+                </>                                 
             </div>
         </dialog>
+        
         </>
         }
     </>

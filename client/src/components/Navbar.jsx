@@ -149,6 +149,7 @@ export default function Navbar ({currentUser}){
                                 </li>
                                 <li><a>Edit Profile</a></li>
                                 <div className='divider divider-warning my-0'></div>
+                                <li><a><p>h<span className="text-warning">3</span>xWallet</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xStore</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xCard</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xPro</p></a></li>

@@ -9,7 +9,8 @@ export default function Spaces () {
     const [shopMode] = useAtom(shopModeAtom);
     return (
       <>
-        <SocketManager />
+      <SocketManager />
+      <div className="h-screen">
         <Canvas shadows camera={{ position: [8, 8, 8], fov: 30 }}>
           <color attach="background" args={["#ececec"]} />
           <ScrollControls pages={shopMode ? 4 : 0}>
@@ -17,6 +18,8 @@ export default function Spaces () {
           </ScrollControls>
         </Canvas>
         <UI />
+      </div>
       </>
+      
     );
 }

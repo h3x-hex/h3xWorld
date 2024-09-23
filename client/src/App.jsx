@@ -12,7 +12,7 @@ import Profile from './Routes/Profile'
 import Admin from './Routes/Admin'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
-import Store from './Routes/Store'
+import Shop from './Routes/Shop'
 import Spaces from './Routes/Spaces'
 
 
@@ -41,12 +41,8 @@ function App() {
       element:<Protected><Admin/></Protected>
     },
     {
-      path:"/store/:username",
-      element:<Store/>
-    },
-    {
-      path:"/:username",
-      element:<h3xClusive/>
+      path:"/:username/shop",
+      element:<Protected><Shop/></Protected>
     },
     {
       path:"/:username/spaces",
@@ -54,7 +50,7 @@ function App() {
     },
     {
       path:"/settings/:username",
-      element:<Profile/>
+      element:<Protected><Profile/></Protected>
     },
     
   ])
