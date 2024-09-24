@@ -14,6 +14,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
 import Shop from './Routes/Shop'
 import Spaces from './Routes/Spaces'
+import Card from './Routes/Card'
+import Wallet from './Routes/Wallet'
 
 
 
@@ -47,6 +49,14 @@ function App() {
     {
       path:"/:username/spaces",
       element:<Spaces/>
+    },
+    {
+      path:"/h3xCard",
+      element:<Card/>
+    },
+    {
+      path:"/wallet",
+      element:<Wallet/>
     },
     {
       path:"/settings/:username",

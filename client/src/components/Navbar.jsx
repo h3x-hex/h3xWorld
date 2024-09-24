@@ -74,7 +74,6 @@ export default function Navbar ({currentUser}){
                     <li className='h-10 text-xl'><a className='h-10 text-lg'>Home</a></li>
                     <li className='h-10 text-xl'><a className='h-10 text-lg'>Explore</a></li>
                     <div className='divider divider-warning my-0'></div>
-                    <li><a className='h-10 text-lg'><p>h<span className="text-warning">3</span>xStore</p></a></li>
                     <li><a className='h-10 text-lg'><p>h<span className="text-warning">3</span>xCard</p></a></li>
                     <li><a className='h-10 text-lg'><p>h<span className="text-warning">3</span>xPro</p></a></li>
                     <li><a className='h-10 text-lg'><p>h<span className="text-warning">3</span>xMarketplace</p></a></li>
@@ -116,7 +115,7 @@ export default function Navbar ({currentUser}){
                                 </li>
                                 <li><a>Edit Profile</a></li>
                                 <div className='divider divider-warning my-0'></div>
-                                <li><a><p>h<span className="text-warning">3</span>xStore</p></a></li>
+                                <li><a><p>h<span className="text-warning">3</span>xWallet</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xCard</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xPro</p></a></li>
                                 <div className='divider divider-warning my-0'></div>
@@ -150,7 +149,6 @@ export default function Navbar ({currentUser}){
                                 <li><a>Edit Profile</a></li>
                                 <div className='divider divider-warning my-0'></div>
                                 <li><a><p>h<span className="text-warning">3</span>xWallet</p></a></li>
-                                <li><a><p>h<span className="text-warning">3</span>xStore</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xCard</p></a></li>
                                 <li><a><p>h<span className="text-warning">3</span>xPro</p></a></li>
                                 <div className='divider divider-warning my-0'></div>

@@ -400,7 +400,7 @@ export default function Profile () {
                                                         <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
                                                         <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
                                                         <div className="mx-auto pt-8">
-                                                            <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/dashboard`)}>Visit h3x.club</button>
+                                                            <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`http://localhost:5173`)}>Visit h3x.club</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -750,7 +750,7 @@ export default function Profile () {
                                                             <h3 className="font-bold text-xl">Visit {profileUser.username}'s spaces</h3>
                                                             <p className="py-4 text-lg"></p>
                                                             <div className="mx-auto pt-8">
-                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`/x3nDant369/spaces`)}>Visit</button>
+                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`http://localhost:5173`)}>Visit</button>
                                                             </div>
                                                         </div>
                                                     </div>
