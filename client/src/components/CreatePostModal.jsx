@@ -1113,7 +1113,7 @@ export default function CreatePostModal({}) {
                                                 
                                             </div>
                                         <div className='divider divider-warning my-0'></div>
-                                            <div className='flex flex-col pb-3 gap-3'>
+                                            <div className='flex flex-col pb-3 gap-3 mx-auto'>
                                                 <div className='flex mx-auto '>
                                                     <button className='btn btn-ghost border-warning w-64 h-64'  onClick={() => addBlogThumbnail()}>
                                                         {
