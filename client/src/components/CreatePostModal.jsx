@@ -715,7 +715,7 @@ export default function CreatePostModal({}) {
                                     <div className='flex flex-col'>
                                         <div className='flex flex-col pb-3 gap-3'>
                                             <div className='flex mx-auto pl-24'>
-                                                <button className='btn btn-ghost border-warning w-36 h-36'  onClick={() => addBlogThumbnail()}>
+                                                <button className='btn btn-ghost border-warning w-64 h-64'  onClick={() => addBlogThumbnail()}>
                                                     {
                                                         blogThumbnailUploaded ?
 
@@ -723,7 +723,7 @@ export default function CreatePostModal({}) {
 
                                                         :
 
-                                                        <p className=''>Blog Thumbnail</p>
+                                                        <p className=''>Collection Media</p>
                                                     }
                                                 </button>
                                                 <input 
@@ -736,23 +736,14 @@ export default function CreatePostModal({}) {
                                             </div>
                                             <div className=''>
                                                 <input
-                                                    placeholder='Blog Post Title' 
+                                                    placeholder='Collection Name' 
                                                     className='input bg-transparent input-bordered border-warning focus:border-warning w-[20.5rem]' 
                                                     value={blogTitle}
                                                     onChange={(e) => setBlogTitle(e.target.value)}
                                                 ></input>
                                             </div>
                                         </div>
-                                        <div className='flex w-[22rem] pr-6'>
-                                            <ReactQuill
-                                                theme="snow"
-                                                value={blogContent}
-                                                onChange={setBlogContent}
-                                                modules={blogModules}
-                                                formats={blogFormats}
-                                                className='w-full h-96 text-white ql-description'
-                                            /> 
-                                        </div>
+                                        
                                         <div className='flex w-72 pt-20 mx-auto items-end justify-end'>
                                             <button className='btn btn-warning w-72' onClick={() => uploadBlogPost('Blog')}>Upload</button>
                                         </div>
@@ -1123,8 +1114,8 @@ export default function CreatePostModal({}) {
                                             </div>
                                         <div className='divider divider-warning my-0'></div>
                                             <div className='flex flex-col pb-3 gap-3'>
-                                                <div className='flex mx-auto pl-24'>
-                                                    <button className='btn btn-ghost border-warning w-36 h-36'  onClick={() => addBlogThumbnail()}>
+                                                <div className='flex mx-auto '>
+                                                    <button className='btn btn-ghost border-warning w-64 h-64'  onClick={() => addBlogThumbnail()}>
                                                         {
                                                             blogThumbnailUploaded ?
 
@@ -1132,7 +1123,7 @@ export default function CreatePostModal({}) {
 
                                                             :
 
-                                                            <p className=''>Blog Thumbnail</p>
+                                                            <p className=''>Collection Media</p>
                                                         }
                                                     </button>
                                                     <input 
@@ -1145,22 +1136,20 @@ export default function CreatePostModal({}) {
                                                 </div>
                                                 <div className=''>
                                                     <input
-                                                        placeholder='Blog Post Title' 
+                                                        placeholder='Collection Name' 
                                                         className='input bg-transparent input-bordered border-warning focus:border-warning w-[20.5rem]' 
                                                         value={blogTitle}
                                                         onChange={(e) => setBlogTitle(e.target.value)}
                                                     ></input>
                                                 </div>
                                             </div>
-                                            <div className='flex w-[22rem] pr-6'>
-                                                <ReactQuill
-                                                    theme="snow"
-                                                    value={blogContent}
-                                                    onChange={setBlogContent}
-                                                    modules={blogModules}
-                                                    formats={blogFormats}
-                                                    className='w-full h-96 text-white ql-description'
-                                                /> 
+                                            <div className='flex  pr-6'>
+                                                <select className="select bg-transparent select-bordered border-warning w-24 max-w-xs focus:border-warning " value={productCurrency} onChange={(e) => setProductCurrency(e.target.value)}>
+                                                    <option disabled selected className='bg-transparent'>Select Chain</option>
+                                                    <option  className='bg-transparent'>ETH</option>
+                                                    <option  className='bg-transparent'>MATIC</option>
+                                                    <option  className='bg-transparent'>SOL</option>
+                                                </select>
                                             </div>
                                             <div className='flex w-72 pt-20 mx-auto items-end justify-end'>
                                                 <button className='btn btn-warning w-72' onClick={() => uploadBlogPost('Blog')}>Upload</button>
