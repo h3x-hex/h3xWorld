@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import { getDatabase, ref, onValue } from "firebase/database";
 
 
-export default function Portfolio ({profileUser}) {
+export default function Post ({profileUser}) {
 
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
     const navigate = useNavigate();
@@ -55,7 +55,7 @@ export default function Portfolio ({profileUser}) {
             isMobile ?
             <>
                 <div className="mx-auto text-center">
-                    <p className="text-2xl font-bold pt-8">Portfolio</p>
+                    <p className="text-2xl font-bold pt-8">Posts</p>
                     <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
                 </div>
                 <div className="flex flex-col mx-auto px-3 gap-3 pb-8">
@@ -98,7 +98,6 @@ export default function Portfolio ({profileUser}) {
                                                 )})
                                             }                                    
                                         </div>
-                                        
 
                                     </div>
                                     
@@ -107,9 +106,6 @@ export default function Portfolio ({profileUser}) {
                                     <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
                                     <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
                                     <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
-                                </div>
-                                <div className='w-full'>
-                                    <button className='btn btn-warning w-full btn-outline'>Mint Post as NFT </button>
                                 </div>
                             </div>
                             
@@ -122,7 +118,7 @@ export default function Portfolio ({profileUser}) {
             :
             <>
             <div className="mx-auto text-center">
-                <p className="text-2xl font-bold pt-8">Portfolio</p>
+                <p className="text-2xl font-bold pt-8">Posts</p>
                 <div className='divider divider-warning my-0 w-2/12 mx-auto'></div>
 
             </div>
@@ -168,7 +164,7 @@ export default function Portfolio ({profileUser}) {
                                                 
                                             }                                    
                                         </div>
-                                        
+
                                     </div>
                                     
                                 </div>
@@ -186,9 +182,7 @@ export default function Portfolio ({profileUser}) {
                                         <button className='btn btn-ghost' onClick={() => {if(document)document.getElementById('postAwardModal').showModal()}}><img src={'/postAward.png'} width={24} height={24}/></button>
                                     </div>
                                 </div>
-                                <div className='w-full'>
-                                    <button className='btn btn-warning w-full btn-outline'>Mint Post as NFT </button>
-                                </div>
+                                
                             </div>
                         
                         </>
@@ -246,34 +240,8 @@ export default function Portfolio ({profileUser}) {
 
                     postAwardSteps === 1?
 
-                    <div className='flex flex-col gap-6 pt-3'>
-                        <div className='flex flex-row gap-3 items-center justify-center'>
-                            <select className='select select-bordered select-warning bg-stone-900 w-3/12'>
-                                <option disabled selected className='bg-transparent'>Select Currency</option>
-                                {
-                                    postAwardType === 'Fiat' ?
-
-                                    <>
-                                        <option className='bg-transparent'>USD</option>
-                                        <option>GBP</option>
-                                        <option>INR</option>
-                                        <option>AED</option>
-                                    </>
-                                    
-                                    :
-                                    
-                                    <>
-                                        <option>ETH</option>
-                                        <option>MATIC</option>
-                                        <option>SOL</option>
-                                        <option>XRP</option>
-                                    </>
-                                }
-                            </select>
-                            <input className='input input-bordered input-warning bg-transparent w-full' placeholder='Post Award Amount'></input>
-                        </div>
-                        <button className='btn btn-warning w-full'>Confirm</button>
-                    </div>
+                    <>
+                    </>
 
                     : 
 

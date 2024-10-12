@@ -438,10 +438,10 @@ export default function CreatePostModal({}) {
                             <div className='my-0'>
                                 <button className='btn btn-ghost bg-transparent text-white hover:text-warning'  onClick={() => setCreateSteps(createSteps-1)}><span className="material-symbols-outlined">arrow_back</span></button>
                             </div>
-                            <h1 className='text-2xl font-bold mx-auto pt-[6px] pr-[3.5rem]'>Create new Post</h1>
+                            <h1 className='text-2xl font-bold mx-auto pt-[6px]'>Create</h1>
                         </>
                         :
-                        <h1 className='text-2xl font-bold mx-auto '>Create new Post</h1>
+                        <h1 className='text-2xl font-bold mx-auto '>Create</h1>
                     }
                 </div> 
                 <div className='divider divider-warning my-0'></div>
@@ -453,9 +453,9 @@ export default function CreatePostModal({}) {
                                 <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Portfolio')}>Create Portfolio Post</button>
                                 <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Blog')}>Create Blog Post</button>
                                 <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('ShopCategory')}>Create Shop Category</button>
-                                    <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('ShopProduct')}>Create Shop Product</button>
-                                    <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Links')}>Create Link</button>
-                                    <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Collection')}>Create NFT Collection</button>
+                                <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('ShopProduct')}>Create Shop Product</button>
+                                <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Post')}>Create h3xClusive Post</button>
+                                <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Links')}>Create Link</button>
                             </div>
 
                         :
@@ -709,7 +709,7 @@ export default function CreatePostModal({}) {
                                 
                                 </>
                                 :
-                                postType == 'Collection' ?
+                                postType == 'Post' ?
                                 <>
                                 
                                     <div className='flex flex-col'>
@@ -785,19 +785,18 @@ export default function CreatePostModal({}) {
                             <>
                                 <div className='flex flex-row'>
                                     
-                                    <h1 className='text-2xl font-bold mx-auto pt-[6px] pr-[3.5rem]'>Create new Post</h1>
+                                    <h1 className='text-2xl font-bold mx-auto pt-[6px] '>Create</h1>
                                     
                                 </div>
                                 <div className='divider divider-warning mt-0'></div>
                                 <div className='w-5/12 mx-auto'>
-                                    
                                     <div className='grid grid-cols-2 gap-6'>
                                         <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Portfolio')}>Create Portfolio Post</button>
                                         <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Blog')}>Create Blog Post</button>
                                         <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('ShopCategory')}>Create Shop Category</button>
                                         <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('ShopProduct')}>Create Shop Product</button>
+                                        <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Post')}>Create h3xClusive Post</button>
                                         <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Links')}>Create Link</button>
-                                        <button className='btn btn-outline btn-warning btn-square w-36 h-36 mx-auto' onClick={() => postTypeSelect('Collection')}>Create NFT Collection</button>
                                     </div>
                                 </div>
                             </>

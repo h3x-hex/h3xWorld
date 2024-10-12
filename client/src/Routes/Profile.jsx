@@ -12,6 +12,10 @@ import Blog from '../components/Profile/Blog';
 import { useUserStore } from '../stores/user-store';
 import Shop from '../components/Profile/Shop';
 import Links from '../components/Profile/Links';
+import Post from '../components/Profile/Post';
+import Collections from '../components/Profile/Collections';
+import h3xClusive from '../components/Profile/h3xClusive';
+import H3xClusive from '../components/Profile/h3xClusive';
 
 
 export default function Profile () {
@@ -126,7 +130,7 @@ export default function Profile () {
         if(tab == 1){
             if (document) {
     
-                (document.getElementById('profileTab1')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab1')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
@@ -139,7 +143,7 @@ export default function Profile () {
         if(tab == 2){
             if (document) {
     
-                (document.getElementById('profileTab2')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab2')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white " ;
                 (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
@@ -151,7 +155,7 @@ export default function Profile () {
         if(tab === 3){
             if (document) {
     
-                (document.getElementById('profileTab3')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab3')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
@@ -163,7 +167,7 @@ export default function Profile () {
         if(tab === 4){
             if (document) {
     
-                (document.getElementById('profileTab4')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab4')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab3')).className = "tab cursor-pointer text-white ";
@@ -175,7 +179,7 @@ export default function Profile () {
         if(tab === 5){
             if (document) {
     
-                (document.getElementById('profileTab5')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab5')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
@@ -187,7 +191,7 @@ export default function Profile () {
         if(tab === 6){
             if (document) {
     
-                (document.getElementById('profileTab6')).className = "tab bg-warning font-bold";
+                (document.getElementById('profileTab6')).className = "tab bg-warning font-bold text-black";
                 (document.getElementById('profileTab2')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab1')).className = "tab cursor-pointer text-white ";
                 (document.getElementById('profileTab4')).className = "tab cursor-pointer text-white ";
@@ -335,12 +339,12 @@ export default function Profile () {
                                 }
                                 <div className='pt-8'>
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent text-black mx-auto ">
-                                        <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}><span class="material-symbols-outlined">grid_on</span></a>
-                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">post</span></a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">storefront</span></a>
-                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">box</span></a>
+                                        <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}><span class="material-symbols-outlined">post</span></a>
+                                        <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">grid_on</span></a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">contextual_token</span></a>
+                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">storefront</span></a>
                                         <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} ><span class="material-symbols-outlined">link</span></a>
-                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} ><span class="material-symbols-outlined">token</span></a>
+                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} ><span class="material-symbols-outlined">collections_bookmark</span></a>
                                     </div>
                                 </div>
                                 <div className=''>
@@ -364,11 +368,7 @@ export default function Profile () {
                                         tab === 3 ?
 
                                         <>
-
-
-                                            <Shop/>
-
-                                           
+                                           <Collections/>
                                         </>
                                         :
                                       
@@ -376,35 +376,21 @@ export default function Profile () {
                                         tab === 4 ?
 
                                         <>
-                                            <Portfolio />
+                                            <h3xClusive/>
                                         </>
                                         :
 
                                         tab === 5 ?
 
                                         <>
-                                            
-                                            <div className="h-32">
-                                                
-                                            </div>
-                                                
+                                            <Shop/>
                                         </>
                                         :
 
                                         tab === 6 ?
 
                                         <>
-                                            <div className=''>
-                                                <div className="flex flex-col items-center justify-center mx-auto ">
-                                                    <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                        <h3 className="font-bold text-xl">h3xSpaces Launching soon</h3>
-                                                        <p className="py-4 text-lg">Until then sneak a peek at h<span className="text-warning">3</span>xClub.</p>
-                                                        <div className="mx-auto pt-8">
-                                                            <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`http://localhost:5173`)}>Visit h3x.club</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <Links profileUser={profileUser}/>
                                         </>
                                         :
                                         <>
@@ -690,14 +676,17 @@ export default function Profile () {
                                     :
                                     <></>
                                 }
+                                <div>
+
+                                </div>
                                 <div className='pt-8 mx-auto'>
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent mx-auto">
                                         <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}>Portfolio</a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} >Blog</a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Shop</a>
-                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} >Links</a>
-                                        <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} >Collections</a>
-                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} >Spaces</a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Collections</a>
+                                        <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} >h3xClusive</a>
+                                        <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} >Shop</a>
+                                        <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} >Links</a>
                                     </div>
                                 </div>
                                 <div className='pb-8'>
@@ -722,7 +711,7 @@ export default function Profile () {
                                             tab === 3 ?
     
                                             <>
-                                                <Shop profileUser={profileUser}/>
+                                                <Collections/>
                                             </>
                                             :
                                             
@@ -730,31 +719,21 @@ export default function Profile () {
                                             tab === 4 ?
     
                                             <>  
-                                                <Links profileUser={profileUser}/>
+                                                <H3xClusive />
                                             </>
                                             :
     
                                             tab === 5 ?
     
                                             <>
-                                                
+                                                <Shop profileUser={profileUser}/>
                                             </>
                                             :
     
                                             tab === 6 ?
     
                                             <>
-                                                <div className=''>
-                                                    <div className="flex flex-col items-center justify-center mx-auto ">
-                                                        <div className="modal-box bg-transparent border-warning border-2 text-white">
-                                                            <h3 className="font-bold text-xl">Visit {profileUser.username}'s spaces</h3>
-                                                            <p className="py-4 text-lg"></p>
-                                                            <div className="mx-auto pt-8">
-                                                                <button className="btn btn-outline btn-warning w-36" onClick={() => navigate(`http://localhost:5173`)}>Visit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <Links profileUser={profileUser}/>
                                             </>
                                             :
                                             <>

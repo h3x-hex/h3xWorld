@@ -16,6 +16,10 @@ export const SocketManager = () => {
   useEffect(() => {
     function onConnect() {
       console.log("connected");
+      setMap(value.map);
+      setUser(value.id);
+      setItems(value.items);
+      setCharacters(value.characters);
     }
     function onDisconnect() {
       console.log("disconnected");
@@ -29,7 +33,10 @@ export const SocketManager = () => {
     }
 
     function onCharacters(value) {
-      setCharacters(value);
+      setMap(value.map);
+      setUser(value.id);
+      setItems(value.items);
+      setCharacters(value.characters);
     }
 
     function onMapUpdate(value) {

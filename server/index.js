@@ -473,7 +473,7 @@ const generateRandomHexColor = () => {
 
 io.on("connection", (socket) => {
   console.log("user connected");
-
+  console.log(map, characters, socket.id, items)
   characters.push({
     id: socket.id,
     position: generateRandomPosition(),

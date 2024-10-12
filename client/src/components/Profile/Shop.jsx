@@ -88,26 +88,26 @@ export default function Shop({profileUser})
             <div className="mx-auto text-center">
                 <p className="text-2xl font-bold pt-8">Shop</p>
                 <div className='divider divider-warning my-0 w-2/12 mx-auto'></div>
-
             </div>
-            <div className="flex flex-col w-6/12 mx-auto gap-3">
+            <div className="flex flex-col w-7/12 mx-auto gap-3 pl-12">
                     <p className="text-xl font-bold pt-8">Categories</p>
                     <div className='grid grid-cols-3 pr-8 gap-3'>
                         <div key={'category'} className="card card-bordered bg-transparent w-64 shadow-xl hover:border-warning hover:border-2">  
                             <div className="card-body mx-auto">
                                 <div className='flex flex-col gap-1'>
 
-                                    <div className='flex flex-row gap-2 '>
+                                    <div className='flex flex-row gap-2 pb-8'>
                                         <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
                                             <div className="w-96">
                                             <img
                                                 alt="Profile Photo"
                                                 src={'/logo.png'} />
                                             </div>
+                                            <p className='card-title'>h3xav3rse</p>
                                         </div>
+                                       
                                     </div>
-                                    <p className='card-title'>h3xav3rse</p>
-
+                                    
                                 </div>
                                 
                             </div>
@@ -122,9 +122,56 @@ export default function Shop({profileUser})
                                             <div className="w-96">
                                             <img
                                                 alt="Profile Photo"
-                                                src={'/logo.png'} />
+                                                src={'/h3xWear.png'} />
                                             </div>
                                             <p className='card-title text-white'>h3xCatalogue</p>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div key={'category'} className="card card-bordered bg-transparent w-64 shadow-xl hover:border-warning hover:border-2">  
+                            <div className="card-body">
+                                <div className='flex flex-col gap-1'>
+
+                                    <div className='flex flex-row gap-2 '>
+                                        <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
+                                            <div className="w-full h-full">
+                                            <img
+                                                alt="Profile Photo"
+                                                src={'/g3n3sis_obsidian.png'} 
+                                                />
+                                               
+                                            </div>
+                                            <p className='card-title'>h3xCollection</p>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <p className="text-xl font-bold pt-8">Products</p>
+                    <div className='grid grid-cols-3 pr-8 gap-3'>
+                        <div key={'category'} className="card card-bordered bg-transparent w-64 shadow-xl hover:border-warning hover:border-2">  
+                            <div className="card-body">
+                                <div className='flex flex-col gap-1'>
+
+                                    <div className='flex flex-row gap-2 '>
+                                        <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
+                                            <div className="w-96">
+                                            <img
+                                                alt="Profile Photo"
+                                                src={'/logo.png'} />
+                                            </div>
+                                            <p className='card-title'>h3xKey</p>
                                         </div>
                                     </div>
                                     
@@ -143,34 +190,12 @@ export default function Shop({profileUser})
                                             <div className="w-96">
                                             <img
                                                 alt="Profile Photo"
-                                                src={'/logo.png'} />
+                                                src={'/h3xWear.png'} />
                                             </div>
+                                            <p className='card-title'>h3xWear</p>
                                         </div>
                                     </div>
-                                    <p className='card-title'>h3xCollection</p>
-
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <p className="text-xl font-bold pt-8">Products</p>
-                    <div className='grid grid-cols-3 pr-8'>
-                        <div key={'category'} className="card card-bordered bg-transparent w-64 shadow-xl hover:border-warning hover:border-2">  
-                            <div className="card-body">
-                                <div className='flex flex-col gap-1'>
-
-                                    <div className='flex flex-row gap-2 '>
-                                        <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
-                                            <div className="w-96">
-                                            <img
-                                                alt="Profile Photo"
-                                                src={'/logo.png'} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className='card-title'>h3xKey</p>
+                                    
 
                                 </div>
                                 
@@ -181,36 +206,17 @@ export default function Shop({profileUser})
                             <div className="card-body">
                                 <div className='flex flex-col gap-1'>
 
-                                    <div className='flex flex-row gap-2 '>
+                                    <div className='flex flex-row gap-2 pb-8'>
                                         <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
                                             <div className="w-96">
                                             <img
                                                 alt="Profile Photo"
-                                                src={'/logo.png'} />
+                                                src={'/g3n3sis_obsidian.png'} />
                                             </div>
+                                            <p className='card-title'>G3n3sis Obsidian</p>
                                         </div>
                                     </div>
-                                    <p className='card-title'>h3xCatalogue</p>
-
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                        <div key={'category'} className="card card-bordered bg-transparent w-64 shadow-xl hover:border-warning hover:border-2">  
-                            <div className="card-body">
-                                <div className='flex flex-col gap-1'>
-
-                                    <div className='flex flex-row gap-2 '>
-                                        <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent btn-square w-48 h-48">
-                                            <div className="w-96">
-                                            <img
-                                                alt="Profile Photo"
-                                                src={'/logo.png'} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className='card-title'>h3xCollection</p>
+                                    
 
                                 </div>
                                 

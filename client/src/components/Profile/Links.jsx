@@ -40,7 +40,7 @@ export default function Links({profileUser})
             isMobile?
             <>
             <div className="mx-auto text-center">
-                <p className="text-2xl font-bold pt-8">Shop</p>
+                <p className="text-2xl font-bold pt-8">Links</p>
                 <div className='divider divider-warning my-0 w-5/12 mx-auto'></div>
 
             </div>
