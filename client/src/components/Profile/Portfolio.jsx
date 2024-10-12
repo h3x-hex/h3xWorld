@@ -106,7 +106,7 @@ export default function Portfolio ({profileUser}) {
                                 <div className='flex flex-row gap-3'>
                                     <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
                                     <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
-                                    <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
+                                    <button className='btn btn-ghost' onClick={() => {if(document)document.getElementById('postAwardModal').showModal()}}>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
                                 </div>
                                 <div className='w-full'>
                                     <button className='btn btn-warning w-full btn-outline'>Mint Post as NFT </button>
