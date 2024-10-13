@@ -1,0 +1,166 @@
+{
+  "hash": "3291dc27",
+  "configHash": "1f3880d7",
+  "lockfileHash": "7e09e076",
+  "browserHash": "5b554e02",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "6c9cebf4",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "c3dd8e93",
+      "needsInterop": true
+    },
+    "react-responsive": {
+      "src": "../../node_modules/react-responsive/dist/esm/index.js",
+      "file": "react-responsive.js",
+      "fileHash": "e60cb348",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "dde30226",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "531b4234",
+      "needsInterop": false
+    },
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "9eb9d09f",
+      "needsInterop": false
+    },
+    "maath/random/dist/maath-random.esm": {
+      "src": "../../node_modules/maath/random/dist/maath-random.esm.js",
+      "file": "maath_random_dist_maath-random__esm.js",
+      "fileHash": "1e8ad3f7",
+      "needsInterop": false
+    },
+    "firebase/database": {
+      "src": "../../node_modules/firebase/database/dist/esm/index.esm.js",
+      "file": "firebase_database.js",
+      "fileHash": "aeed5f1e",
+      "needsInterop": false
+    },
+    "firebase/auth": {
+      "src": "../../node_modules/firebase/auth/dist/esm/index.esm.js",
+      "file": "firebase_auth.js",
+      "fileHash": "6b1f9e49",
+      "needsInterop": false
+    },
+    "@creit.tech/stellar-wallets-kit": {
+      "src": "../../node_modules/@creit.tech/stellar-wallets-kit/index.js",
+      "file": "@creit__tech_stellar-wallets-kit.js",
+      "fileHash": "442d66c6",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "b2c49098",
+      "needsInterop": false
+    },
+    "jotai": {
+      "src": "../../node_modules/jotai/esm/index.mjs",
+      "file": "jotai.js",
+      "fileHash": "c7916f5f",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "b113b84b",
+      "needsInterop": false
+    },
+    "socket.io-client": {
+      "src": "../../node_modules/socket.io-client/build/esm/index.js",
+      "file": "socket__io-client.js",
+      "fileHash": "9105c7f1",
+      "needsInterop": false
+    },
+    "@readyplayerme/react-avatar-creator": {
+      "src": "../../node_modules/@readyplayerme/react-avatar-creator/dist/index.esm.js",
+      "file": "@readyplayerme_react-avatar-creator.js",
+      "fileHash": "941982d3",
+      "needsInterop": false
+    },
+    "react-quill": {
+      "src": "../../node_modules/react-quill/lib/index.js",
+      "file": "react-quill.js",
+      "fileHash": "023120e5",
+      "needsInterop": true
+    },
+    "firebase/storage": {
+      "src": "../../node_modules/firebase/storage/dist/esm/index.esm.js",
+      "file": "firebase_storage.js",
+      "fileHash": "adcdf249",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "0524a39f",
+      "needsInterop": false
+    },
+    "three-stdlib": {
+      "src": "../../node_modules/three-stdlib/index.js",
+      "file": "three-stdlib.js",
+      "fileHash": "ac640424",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "hls-TWALYA2W": {
+      "file": "hls-TWALYA2W.js"
+    },
+    "vision_bundle-BZF36E6A": {
+      "file": "vision_bundle-BZF36E6A.js"
+    },
+    "chunk-YU47KGRL": {
+      "file": "chunk-YU47KGRL.js"
+    },
+    "chunk-RJV563BM": {
+      "file": "chunk-RJV563BM.js"
+    },
+    "chunk-4Y54DL5Q": {
+      "file": "chunk-4Y54DL5Q.js"
+    },
+    "chunk-YZMEOHG4": {
+      "file": "chunk-YZMEOHG4.js"
+    },
+    "chunk-TZXUNWWM": {
+      "file": "chunk-TZXUNWWM.js"
+    },
+    "chunk-GRKCXXJP": {
+      "file": "chunk-GRKCXXJP.js"
+    },
+    "chunk-G5B2UYIB": {
+      "file": "chunk-G5B2UYIB.js"
+    },
+    "chunk-QTVD6AVW": {
+      "file": "chunk-QTVD6AVW.js"
+    },
+    "chunk-OSBJX6IX": {
+      "file": "chunk-OSBJX6IX.js"
+    },
+    "chunk-RTTQRUEZ": {
+      "file": "chunk-RTTQRUEZ.js"
+    },
+    "chunk-AUDLTLPI": {
+      "file": "chunk-AUDLTLPI.js"
+    },
+    "chunk-PR4QN5HX": {
+      "file": "chunk-PR4QN5HX.js"
+    }
+  }
+}

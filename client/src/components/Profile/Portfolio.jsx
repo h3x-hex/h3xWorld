@@ -47,6 +47,12 @@ export default function Portfolio ({profileUser}) {
         }
     }
 
+    function openModal(){
+        console.log('HELLO')
+        if(document)document.getElementById('postAwardModal').showModal()
+        
+    }
+
     return (
         <>
             
@@ -93,6 +99,7 @@ export default function Portfolio ({profileUser}) {
                                                             src={postImg}
                                                             className="w-full"
                                                             alt={posts[post].postContent}
+                                                            onClick={() => showPostMedia(postImg)}
                                                         />
                                                     </div>
                                                 )})
@@ -106,10 +113,10 @@ export default function Portfolio ({profileUser}) {
                                 <div className='flex flex-row gap-3'>
                                     <button className='btn btn-ghost' onClick={() => updateLike()}>{posts[post].likesCount}<img src={'/like.png'} width={24} height={24}/></button>
                                     <button className='btn btn-ghost'>{posts[post].commentsCount}<img src={'/comment.png'} width={24} height={24}/></button>
-                                    <button className='btn btn-ghost' onClick={() => {if(document)document.getElementById('postAwardModal').showModal()}}>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
+                                    <button className='btn btn-ghost' onClick={() => openModal()}>{posts[post].commentsCount}<img src={'/postAward.png'} width={24} height={24}/></button>
                                 </div>
-                                <div className='w-full'>
-                                    <button className='btn btn-warning w-full btn-outline'>Mint Post as NFT </button>
+                                <div className='w-full pr-3'>
+                                    <button className='btn btn-warning w-full btn-outline' onClick={() => {if(document)document.getElementById('postAwardModal').showModal()}}>Mint Post as NFT </button>
                                 </div>
                             </div>
                             
@@ -234,51 +241,16 @@ export default function Portfolio ({profileUser}) {
                     }
                 </div>
                 <div className='divider divider-warning mb-0'></div>
-                {
-                    postAwardSteps === 0 ?
-
-                    <div className='flex flex-row gap-3 items-center justify-center pt-3'> 
-                        <button className='btn btn-warning border-warning bg-transparent text-white hover:text-black w-48' onClick={() => setPostAward('Fiat')}>Fiat Post Award</button>
-                        <button className='btn btn-warning border-warning bg-transparent text-white hover:text-black w-48' onClick={() => setPostAward('Crypto')}>Crypto Post Award</button>
-                    </div> 
-
-                    :
-
-                    postAwardSteps === 1?
-
+                
                     <div className='flex flex-col gap-6 pt-3'>
                         <div className='flex flex-row gap-3 items-center justify-center'>
                             <select className='select select-bordered select-warning bg-stone-900 w-3/12'>
-                                <option disabled selected className='bg-transparent'>Select Currency</option>
-                                {
-                                    postAwardType === 'Fiat' ?
-
-                                    <>
-                                        <option className='bg-transparent'>USD</option>
-                                        <option>GBP</option>
-                                        <option>INR</option>
-                                        <option>AED</option>
-                                    </>
-                                    
-                                    :
-                                    
-                                    <>
-                                        <option>ETH</option>
-                                        <option>MATIC</option>
-                                        <option>SOL</option>
-                                        <option>XRP</option>
-                                    </>
-                                }
+                                <option>XLM</option>
                             </select>
                             <input className='input input-bordered input-warning bg-transparent w-full' placeholder='Post Award Amount'></input>
                         </div>
                         <button className='btn btn-warning w-full'>Confirm</button>
-                    </div>
-
-                    : 
-
-                    <></>
-                }                                
+                    </div>                              
             </div>
         </dialog>
         </>
