@@ -28,7 +28,7 @@ function Home() {
       <div className='h-screen w-screen bg-stone-950 text-white'>
     <div className='h-screen relative z-0'>
     <div className='flex flex-col pt-16 gap-16 pl-3 '>
-      <div className='flex mx-auto'>
+      <div className='flex flex-col mx-auto'>
         <h1 className='text-5xl'>Welcome to h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World</h1>
         <h1 className='text-2xl'>Web3 Social Media</h1>
       </div>
