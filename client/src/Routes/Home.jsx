@@ -41,7 +41,7 @@ function Home() {
             :
             <h1  className='text-xl mx-auto pb-3'>Join the h<span className='text-[#d69e2e]'>3</span>x<span className='text-[#888888]'>|</span>World beta waitlist.</h1>
           }
-          <input type="text" placeholder="Email" className="input input-bordered text-lg text-black w-80" disabled={addedToWaitlist} value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input type="text" placeholder="Email" className="input input-bordered text-lg text-white w-80" disabled={addedToWaitlist} value={email} onChange={(e) => setEmail(e.target.value)}/>
           <button className='btn btn-warning w-80' onClick={() => addUserToWaitlist()} disabled={addedToWaitlist}>Join h3x|World</button>
         </div>
       </div>
