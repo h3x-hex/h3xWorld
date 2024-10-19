@@ -228,7 +228,7 @@ export default function Profile () {
             {
                 isMobile ?
 
-                <div className='h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white '>
+                <div className='h-screen bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))]  from-gray-800 via-stone-900 to-stone-900 text-white '>
 
                     {
                         currentUser ?
