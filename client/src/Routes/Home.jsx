@@ -263,7 +263,7 @@ function Home() {
                   <H3xCard scale={[0.4, 0.4, 0.4]}/>
                 </Canvas>
               </div>
-              <button className='btn btn-warning rounded-full'>Coming Soon...</button>
+              <button className='btn btn-warning rounded-full' onClick={() => scrollToSection(homeRef)}>Coming Soon...</button>
             </div>
           </div>
           <StarsCanvas />
