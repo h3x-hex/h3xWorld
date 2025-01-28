@@ -13,7 +13,7 @@ import { useUserStore } from '../stores/user-store';
 import Shop from '../components/Profile/Shop';
 import Links from '../components/Profile/Links';
 import Post from '../components/Profile/Post';
-import Collections from '../components/Profile/Collections';
+import Campaigns from '../components/Profile/Campaigns';
 import h3xClusive from '../components/Profile/h3xClusive';
 import H3xClusive from '../components/Profile/h3xClusive';
 
@@ -341,7 +341,7 @@ export default function Profile () {
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent text-black mx-auto ">
                                         <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}><span class="material-symbols-outlined">post</span></a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} ><span class="material-symbols-outlined">contextual_token</span></a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">grid_on</span></a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} ><span class="material-symbols-outlined">diversity_3</span></a>
                                         <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} ><span class="material-symbols-outlined">collections_bookmark</span></a>
                                         <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} ><span class="material-symbols-outlined">storefront</span></a>
                                         <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} ><span class="material-symbols-outlined">link</span></a>
@@ -368,7 +368,7 @@ export default function Profile () {
                                         tab === 3 ?
 
                                         <>
-                                           <Collections/>
+                                           <Campaigns/>
                                         </>
                                         :
                                       
@@ -683,7 +683,7 @@ export default function Profile () {
                                     <div role="tablist" className="tabs tabs-boxed bg-transparent mx-auto">
                                         <a id='profileTab1' role="tab" className="tab text-white" onClick={() => switchTab(1)}>Portfolio</a>
                                         <a id='profileTab2' role="tab" className="tab text-white" onClick={() => switchTab(2)} >Blog</a>
-                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Collections</a>
+                                        <a id='profileTab3' role="tab" className="tab text-white" onClick={() => switchTab(3)} >Campaigns</a>
                                         <a id='profileTab4' role="tab" className="tab text-white" onClick={() => switchTab(4)} >h3xClusive</a>
                                         <a id='profileTab5' role="tab" className="tab text-white" onClick={() => switchTab(5)} >Shop</a>
                                         <a id='profileTab6' role="tab" className="tab text-white" onClick={() => switchTab(6)} >Links</a>
@@ -711,7 +711,7 @@ export default function Profile () {
                                             tab === 3 ?
     
                                             <>
-                                                <Collections/>
+                                                <Campaigns/>
                                             </>
                                             :
                                             
