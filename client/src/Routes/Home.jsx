@@ -215,7 +215,7 @@ function Home() {
               <span className="bg-neutral-900 text-warning rounded-full h-12 text-3xl font-medium px-6 py-3">
                 h3xPremium
               </span>
-              <p>for more storage (Free Tier 1GB)</p>
+              <p className='pt-3'>for more storage (Free Tier 1GB)</p>
               <div className="flex flex-wrap pt-8">
                 {pricingOptions.map((option, index) => (
                   <div key={index} className="w-1/4 p-2">
